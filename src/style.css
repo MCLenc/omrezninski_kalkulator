@@ -1,12 +1,17 @@
-/* testc pobriši, ko boš zaključil testiranja */
-.testc {
-    border-color: black;
-    border-width: 1px;
-    border-style: solid;
-}
-
 p, div, span {
     color: white;
+}
+
+a {
+    color: #ffd89f;
+}
+
+a:hover {
+    color: #ffc774;
+}
+
+a:visited {
+    color: #ffd89f;
 }
 
 h3 {
@@ -261,6 +266,10 @@ hr {
     background-color: #ffffff6a;
     text-align: center;
     border: none;    
+}
+
+.in-number:focus {
+    outline: none;
 }
 
 .subtotal {

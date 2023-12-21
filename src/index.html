@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Content-Security-Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://cdn.jsdelivr.net/; script-src 'self' https://cdn.jsdelivr.net/;"/>
-    <title>Business Calculator</title>
-    <link rel="stylesheet" type="text/css" href="aaa.css">
+    <title>Kalkulator stroškov električne energije</title>
+    <link rel="icon" href="../media/tab_logo.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Include Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
@@ -15,37 +16,32 @@
 
 
     <!-- TODO:
-                
-              ############# Prepreči, da bi odjemalec izbral odjemno skupino karkoli druga kot GOS ali BMM in hkrati ET (ker to ni veljavno). #############
-              
-              - Smiselno preimenuj vse id-je ali class-e
-              - Daj notri realne cene, nastavi vse začetne vrednosti na 0.
-              - Ctrl + F - testc"-
-              - Ctrl + F -testc-
+        - Prepreči, da bi odjemalec izbral odjemno skupino karkoli druga kot GOS ali BMM in hkrati ET (ker to ni veljavno).
     -->
 
 
     <div class="main">
         <!-- Naslovna glava -->
         <div class="d-flex flex-row">
-            <div class="col-md-2 my-auto testc">
-                <img class="img-head testc" src="../media/ec_logo_w.png">
+            <div class="col-md-2 my-auto">
+                <img class="img-head" src="../media/ec_logo_w.png">
             </div>
-            <div class="col-md-10 p-3 my-auto testc">
+            <div class="col-md-10 p-3 my-auto">
                 <h1 class="head-title">KALKULATOR STROŠKOV ELEKTRIČNE ENERGIJE</h1>
             </div>
         </div>
 
         <!-- Splošna navodila -->
         <div class="row">
-            <div class="col-md-12 testc">
+            <div class="col-md-12">
                 <div class="card my-3 shadow-lg">
                     <div class="card-body">
-                        <p>Namen aplikacije je, da si s posameznim kalkulatorjem informativno izračunate stroške vašega računa po trenutno obstoječi metodologiji obračuna omrežnine in po novi metodologiji obračuna omrežnine ob različnih kombinacijah dogovorjenih moči in porabe energije v posameznih časovnih blokih.</p>
+                        <p>Namen aplikacije je, da si s posameznim kalkulatorjem informativno izračunate stroške vašega računa po trenutno obstoječi metodologiji obračuna omrežnine (<a href="http://www.pisrs.si/Pis.web/pregledPredpisa?id=AKT_1050" target="_blank">zakonodaja</a>) in po novi metodologiji obračuna omrežnine (<a href="http://pisrs.si/Pis.web/pregledPredpisa?id=AKT_1266" target="_blank">zakonodaja</a>) ob različnih kombinacijah dogovorjenih moči in porabe energije v posameznih časovnih blokih.</p>
+                        <h4>NAVODILA ZA UPORABO</h4>
                         <p>V vsakem razdelku aplikacije je na voljo <b>info</b> gumb, ki podaja več informacij.</p>
                         <p>Spodaj so podani trije kalkulatorji. Na desni strani je na voljo kalkulator za informativni izračun stroškov električne energije po trenutnem načinu obračunavanja omrežnine (dvotarifni obračun (VT/MT) ali eno tarifni obračun (ET)), ki bo v veljevi do 30.6.2024. Na desni strani je na voljo kalkulator za informativni izračun stroškov električne energije po prihodnjem načinu obračunavanja omrežnine energije (časovni bloki), ki bo v veljevi od 1.7.2024 dalje. Podatke lahko vnesete le v en kalkulator ali v oba.</p>
                         <p>Opcijsko lahko s tretjim kalkulatorjem omogočite izračun stroškov energenta. Ta se računa posebej in sicer po tarifah (MT/VT ali ET) ter se prišteje v skupni strošek na dnu strani.</p>
-                        <p>Na dnu strani pa najdete razdelek <b>SKUPNI STROŠEK</b>, kjer so sešteti stroški iz vseh uporabljenih kalkulatorjev.</p>
+                        <p>Ko vpišete podatke v razdelku IZRAČUN STROŠKOV kliknite gumb <i><b>Izračunaj stroške</b></i>. Če želite ponastaviti vse vrednosti kliknite na gumb gumb <i><b>Ponastavi</b></i>. Na dnu strani najdete tudi razdelek <b>SKUPNI STROŠEK</b>, kjer so sešteti stroški iz vseh uporabljenih kalkulatorjev. Vsi delni stroški so zaokroženi na tretji decimalki, skupni stroški pa so zaokroženi na drugi decimalki.</p>
                         <p>Vse informacije navedene na tej strani so informativne narave. Za več podrobnosti si preberite Izjavo o omejitvi odgovornosti na dnu strani.</p>
                     </div>
                 </div>
@@ -54,23 +50,23 @@
         
         <!-- Vnos podatkov za izračun omrežnine -->
         <div class="row">
-            <div class="col-md-12 testc">
+            <div class="col-md-12">
                 <div class="card my-3 shadow-lg">
                     <div class="card-body">
-                        <div class="row testc">
+                        <div class="row">
                             <h3 class="card-title text-center">VNESITE PODATKE ZA OMREŽNINO</h3>
                         </div>
-                        <div class="row testc">            
+                        <div class="row">            
                             <div class="container-fluid">
                                 <div class="row">
                                     <!-- Nov način obračuna -->
-                                    <div class="col-md-6 justify-content-center testc">
+                                    <div class="col-md-6 justify-content-center">
                                         <div class="subcard card my-3 shadow">
                                             <div class="card-body">
                                                 <h4 class="card-title text-center">NOV NAČIN OBRAČUNAVANJA OMREŽNINE</h4>
                                                 <hr class="m-0">
                                                 <!-- Izbor uporabniške skupine -->
-                                                <div class="row my-2 testc">
+                                                <div class="row my-2">
                                                     <div>Izberite uporabniško skupino</div>
                                                     <div class="d-flex flex-row">
                                                         <div>
@@ -94,7 +90,7 @@
                                                 </div>
                                                 <hr class="m-0">
                                                 <!-- Izbor upoštevanja presežnih moči -->
-                                                <div class="row my-2 testc">
+                                                <div class="row my-2">
                                                     <div>Ali želite v izračunu upoštevati tudi presežke (presežne moči)?</div>
                                                     <div class="d-flex flex-row">
                                                         <div class="helper-popup">
@@ -110,7 +106,7 @@
                                                 </div>
                                                 <hr class="m-0">
                                                 <!-- Vnos porabljene energije in dogovorjenih moči -->
-                                                <div class="row my-2 testc">
+                                                <div class="row my-2">
                                                     <div>Za vsak časovni blok (ČB) vnesite podatke o vaši porabljeni energiji (v kWh) in dogovorjenih močeh (v kW). Pri tem ocenite koliko energije predvidevate, da boste porabili v posameznem časovnem bloku in kolikšne bodo vaše dogovorjene moči.</div>
                                                     <div class="d-flex flex-row">
                                                         <div class="helper-popup">
@@ -126,81 +122,81 @@
                                                             <div class="badge rounded-pill inf" data-bs-toggle="modal" data-bs-target="#modal-m-cb">i</div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6 my-2 testc">
+                                                    <div class="col-lg-6 my-2">
                                                         <!-- Vnos porabljene energije (ČB) -->
-                                                        <table class="w-100 testc">
+                                                        <table class="w-100">
                                                             <tr class="cb-1">
                                                                 <td class="in-cell-wt"><label for="e-cb1">Energija ČB1</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb1" value=1>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb1" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kWh</td>
                                                             </tr>
                                                             <tr class="cb-2">
                                                                 <td class="in-cell-wt"><label for="e-cb2">Energija ČB2</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb2" value=2>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb2" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kWh</td>
                                                             </tr>
                                                             <tr class="cb-3">
                                                                 <td class="in-cell-wt"><label for="e-cb3">Energija ČB3</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb3" value=3>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb3" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kWh</td>
                                                             </tr>
                                                             <tr class="cb-4">
                                                                 <td class="in-cell-wt"><label for="e-cb4">Energija ČB4</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb4" value=4>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb4" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kWh</td>
                                                             </tr>
                                                             <tr class="cb-5">
                                                                 <td class="in-cell-wt"><label for="e-cb5">Energija ČB5</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb5" value=5>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-cb5" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kWh</td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                     <!-- Vnos dogovorjenih moči (ČB) -->
-                                                    <div class="col-lg-6 my-2 testc">
+                                                    <div class="col-lg-6 my-2">
                                                         <table class="w-100">
                                                             <tr class="cb-1">
                                                                 <td class="in-cell-wt"><label for="m-cb1">Dog. moč ČB1</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb1" value=10>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb1" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kW</td>
                                                             </tr>
                                                             <tr class="cb-2">
                                                                 <td class="in-cell-wt"><label for="m-cb2">Dog. moč ČB2</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb2" value=20>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb2" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kW</td>
                                                             </tr>
                                                             <tr class="cb-3">
                                                                 <td class="in-cell-wt"><label for="m-cb3">Dog. moč ČB3</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb3" value=30>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb3" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kW</td>
                                                             </tr>
                                                             <tr class="cb-4">
                                                                 <td class="in-cell-wt"><label for="m-cb4">Dog. moč ČB4</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb4" value=40>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb4" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kW</td>
                                                             </tr>
                                                             <tr class="cb-5">
                                                                 <td class="in-cell-wt"><label for="m-cb5">Dog. moč ČB5</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb5" value=50>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-cb5" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kW</td>
                                                             </tr>
@@ -209,43 +205,43 @@
                                                 </div>
                                                 
                                                 <!-- Vnos presežnih moči (ČB) -->
-                                                <div class="row my-2 collapse testc" id="collapse-m-ex">
-                                                    <div class="col-md-12 testc">
+                                                <div class="row my-2 collapse" id="collapse-m-ex">
+                                                    <div class="col-md-12">
                                                         <hr class="m-2">
                                                     </div>
-                                                    <div class="col-md-12 testc">
+                                                    <div class="col-md-12">
                                                         <p>Za vsak časovni blok (ČB) vnesite število presežkov. Vsak presežek se smatra kot 1kW nad dogovorjeno močjo. Če ste npr. v ČB1 5-krat presegli vašo dogovorjeno moč za 1kW ali pa ste 1-krat presegli vašo dogovorjeno moč za 5 kW v spodnje polje za št. presežkov ČB1 vpišite 5.</p>
                                                     </div>
-                                                    <div class="col-lg-6 my-2 testc">
+                                                    <div class="col-lg-6 my-2">
                                                         <table class=" w-100">
                                                             <tr class="cb-1">
                                                                 <td class="in-cell-wt"><label for="m-ex-cb1">Št. presežkov ČB1</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb1" value=10>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb1" value=0>
                                                                 </td>
                                                             </tr>
                                                             <tr class="cb-2">
                                                                 <td class="in-cell-wt"><label for="m-ex-cb2">Št. presežkov ČB2</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb2" value=20>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb2" value=0>
                                                                 </td>
                                                             </tr>
                                                             <tr class="cb-3">
                                                                 <td class="in-cell-wt"><label for="m-ex-cb3">Št. presežkov ČB3</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb3" value=30>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb3" value=0>
                                                                 </td>
                                                             </tr>
                                                             <tr class="cb-4">
                                                                 <td class="in-cell-wt"><label for="m-ex-cb4">Št. presežkov ČB4</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb4" value=40>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb4" value=0>
                                                                 </td>
                                                             </tr>
                                                             <tr class="cb-5">
                                                                 <td class="in-cell-wt"><label for="m-ex-cb5">Št. presežkov ČB5</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb5" value=50>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-ex-cb5" value=0>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -256,13 +252,13 @@
                                     </div>
 
                                     <!-- Star način obračuna -->
-                                    <div class="col-md-6 justify-content-center testc">
+                                    <div class="col-md-6 justify-content-center">
                                         <div class="subcard card my-3 shadow">
                                             <div class="card-body">
                                                 <h4 class="card-title text-center">TRENUTNI NAČIN OBRAČUNAVANJA OMREŽNINE</h4>
                                                 <hr class="m-0">
                                                 <!-- Izbor vrste odjema, načina priključitve, nap. nivoja -->
-                                                <div class="row my-2 testc">
+                                                <div class="row my-2">
                                                     <div>Izberite vašo odjemno skupino</div>
                                                     <div class="d-flex flex-row">
                                                         <div class="helper-popup">
@@ -290,6 +286,12 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>
+                                                                    <input type="radio" id="odjSk-polnjenjeEV" name="odjSk" value="polnjenjeEV">
+                                                                    <label for="odjSk-polnjenjeEV">Polnjenje EV</label><br>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
                                                                     <input type="radio" id="odjSk-tPod2500h" name="odjSk" value="tPod2500h">
                                                                     <label for="odjSk-tPod2500h">T &lt; 2500 ur</label><br>
                                                                 </td>
@@ -298,6 +300,18 @@
                                                                 <td>
                                                                     <input type="radio" id="odjSk-tNad2500h" name="odjSk" value="tNad2500h">
                                                                     <label for="odjSk-tNad2500h">T &ge; 2500 ur</label><br>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="radio" id="odjSk-tMed2500In6000h" name="odjSk" value="tMed2500In6000h">
+                                                                    <label for="odjSk-tMed2500In6000h">6000 &gt; T &le; 2500 ur</label><br>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="radio" id="odjSk-tNad6000h" name="odjSk" value="tNad6000h">
+                                                                    <label for="odjSk-tNad6000h">T &ge; 6000 ur</label><br>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -338,12 +352,18 @@
                                                                     <label for="napNivo-SN">SN</label><br>
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="radio" id="napNivo-VN" name="napNivo" value="VN">
+                                                                    <label for="napNivo-VN">VN</label><br>
+                                                                </td>
+                                                            </tr>
                                                         </table>
                                                     </div>
                                                 </div>
                                                 <hr class="m-0">
                                                 <!-- Izbor načina obračuna -->
-                                                <div class="row my-2 testc">
+                                                <div class="row my-2">
                                                     <div>Izberite vaš trenutni način obračuna</div>
                                                     <div class="d-flex flex-row">
                                                         <div class="helper-popup">
@@ -361,8 +381,8 @@
                                                 </div>
                                                 <hr class="m-0">
                                                 <!-- Vnos porabljene energije po tarifah -->
-                                                <div class="row my-2 testc">
-                                                    <div class="col-md-12 testc">
+                                                <div class="row my-2">
+                                                    <div class="col-md-12">
                                                         <p>Vnesite podatke o vaši porabljeni energiji (v kWh) za posamezno tarifo.</p>
                                                     </div>
                                                     <div class="col-lg-6 my-2">
@@ -370,21 +390,21 @@
                                                             <tr class="mt">
                                                                 <td class="in-cell-wt"><label for="e-mt">Energija MT</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-mt" value=100>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-mt" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kWh</td>
                                                             </tr>
                                                             <tr class="vt">
                                                                 <td class="in-cell-wt"><label for="e-vt">Energija VT</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-vt" value=200>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-vt" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kWh</td>
                                                             </tr>
                                                             <tr class="et">
                                                                 <td class="in-cell-wt"><label for="e-et">Energija ET</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-et" value=300>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="e-et" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kWh</td>
                                                             </tr>
@@ -395,7 +415,7 @@
                                                             <tr class="obr-moc">
                                                                 <td class="in-cell-wt"><label for="m-obr">Obračunska moč</label></td>
                                                                 <td class="in-cell-w">
-                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-obr" value=17>
+                                                                    <input class="in-number" type="number" min="0" max="9999999" id="m-obr" value=0>
                                                                 </td>
                                                                 <td class="in-cell-wf">kW</td>
                                                             </tr>
@@ -415,21 +435,21 @@
         
         <!-- Vnos cenika energetna -->
         <div class="row">
-            <div class="col-md-12 testc">
+            <div class="col-md-12">
                 <div class="card my-3 shadow-lg">
                     <div class="card-body">
-                        <div class="row testc">
+                        <div class="row">
                             <h3 class="card-title text-center">VNESITE PODATKE ZA ENERGENT</h3>
                         </div>
-                        <div class="row testc">
+                        <div class="row">
                             <div>Ali želite v izračunu upoštevati tudi stroške energenta? Stroški energenta se bodo s tem prišteli stroškom omrežnine po starem obračunu (MT/VT ali ET) in novem obračunu (ČB).</div>
                             <div class="my-2">
                                 <input type="checkbox" id="energent-choice" data-bs-toggle="collapse" data-bs-target="#collapse-energent">
                                 <label for="energent-choice">DA</label><br>
                             </div>
                         </div>
-                        <div class="row testc collapse" id="collapse-energent">
-                            <div class="col-md-12 testc">
+                        <div class="row collapse" id="collapse-energent">
+                            <div class="col-md-12">
                                 <hr class="m-2">
                             </div>
                             <div>Prosimo vnesite cene energenta vašega dobavitelja električne energije.</div>
@@ -441,27 +461,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row testc collapse" id="collapse-energent">
-                            <div class="col-xl-5 my-2 testc">
+                        <div class="row collapse" id="collapse-energent">
+                            <div class="col-xl-5 my-2">
                                 <table class=" w-100">
                                     <tr class="mt">
                                         <td class="in-cell-wt in-cell-wt-en"><label for="price-en-mt">Cena energenta MT</label></td>
                                         <td class="in-cell-w">
-                                            <input class="in-number" type="number" min="0" max="9999999" id="price-en-mt" value=0.1>
+                                            <input class="in-number" type="number" min="0" max="9999999" id="price-en-mt" value=0>
                                         </td>
                                         <td class="in-cell-wt">EUR/kWh</td>
                                     </tr>
                                     <tr class="vt">
                                         <td class="in-cell-wt in-cell-wt-en"><label for="price-en-vt">Cena energenta VT</label></td>
                                         <td class="in-cell-w">
-                                            <input class="in-number" type="number" min="0" max="9999999" id="price-en-vt" value=0.2>
+                                            <input class="in-number" type="number" min="0" max="9999999" id="price-en-vt" value=0>
                                         </td>
                                         <td class="in-cell-wt">EUR/kWh</td>
                                     </tr>
                                     <tr class="et">
                                         <td class="in-cell-wt in-cell-wt-en"><label for="price-en-et">Cena energenta ET</label></td>
                                         <td class="in-cell-w">
-                                            <input class="in-number" type="number" min="0" max="9999999" id="price-en-et" value=0.3>
+                                            <input class="in-number" type="number" min="0" max="9999999" id="price-en-et" value=0>
                                         </td>
                                         <td class="in-cell-wt">EUR/kWh</td>
                                     </tr>
@@ -475,44 +495,39 @@
 
         <!-- Izračun stroškov -->
         <div class="row">
-            <div class="col-md-12 testc">
+            <div class="col-md-12">
                 <div class="card my-3 shadow-lg">
                     <div class="card-body">
-                        <div class="row testc">
+                        <div class="row">
                             <h3 class="card-title text-center">IZRAČUN STROŠKOV</h3>
                         </div>
-                        <div class="row testc">
+                        <div class="row">
                             <!-- Uporabniški gumbi -->
-                            <div class="d-flex flex-row col-lg-12 testc">
-                                <button type="button" class="btn-st btn btn-primary my-1" id="clear_display">Reset</button>
+                            <div class="d-flex flex-row col-lg-12">
+                                <button type="button" class="btn-st btn btn-primary my-1" id="clear_display">Ponastavi</button>
                                 <button type="button" class="btn-st btn btn-primary my-1 mx-3" id="calculate_button">Izračunaj stroške</button>
                             </div>
                             <!-- Opozorilo - napačno izbrana kombinacija: vrsta odjema, način priključitve, nap. nivo -->
-                            <div class="d-flex flex-column col-lg-12 testc">
+                            <div class="d-flex flex-column col-lg-12">
                                 <div class="col-md-8 my-1 alert alert-danger warn-odjSk" role="alert" id="warn-odjSk">Neveljavna kombinacija vrste odjema, načina priključitve in napetostnega nivoja. Prosimo vnesite veljavno kombinacijo. Izračun za star način obračuna bo nastavljen na 0 EUR.</div>
                             </div>
                         </div>
-                        <div class="row mb-4 testc">
-                            <div class="col-md-12 testc">
-                                <hr class="m-2">
-                            </div>
-                        </div>
-                        <div class="row testc">
+                        <div class="row">
                             <div class="container-fluid">
                                 <div class="row">
                                     <!-- Stroški novega načina obračuna -->
-                                    <div class="col-md-6 justify-content-center testc">
+                                    <div class="col-md-6 justify-content-center">
                                         <div class="subcard card my-3 shadow">
                                             <div class="card-body">
                                                 <h4 class="card-title text-center">NOV NAČIN OBRAČUNAVANJA OMREŽNINE</h4>
                                                 <!-- Stroški porabljene energije in dogovorjenih moči -->
-                                                <div class="row my-2 testc">
-                                                    <div class="col-md-12 testc">
+                                                <div class="row my-2">
+                                                    <div class="col-md-12">
                                                         <p>Spodaj so izračunani stroški po novem načinu obračunavanja omrežnine.</p>
                                                     </div>
-                                                    <div class="col-lg-6 my-2 testc">
+                                                    <div class="col-lg-6 my-2">
                                                         <!-- Stroški porabljene energije (ČB) -->
-                                                        <table class="w-100 testc">
+                                                        <table class="w-100">
                                                             <tr class="cb-1">
                                                                 <td class="in-cell-wt"><label for="expense-e-cb1">Energija ČB1</label></td>
                                                                 <td class="in-cell-w">
@@ -551,7 +566,7 @@
                                                         </table>
                                                     </div>
                                                     <!-- Stroški dogovorjenih moči (ČB) -->
-                                                    <div class="col-lg-6 my-2 testc">
+                                                    <div class="col-lg-6 my-2">
                                                         <table class="w-100">
                                                             <tr class="cb-1">
                                                                 <td class="in-cell-wt"><label for="expense-m-cb1">Dog. moč ČB1</label></td>
@@ -591,7 +606,7 @@
                                                         </table>
                                                     </div>
                                                     <!-- Stroški presežnih moči (ČB) -->
-                                                    <div class="col-lg-6 my-2 testc">
+                                                    <div class="col-lg-6 my-2">
                                                         <table class=" w-100 collapse" id="collapse-m-ex">
                                                             <tr class="cb-1">
                                                                 <td class="in-cell-wt"><label for="expense-m-ex-cb1">Presežki ČB1</label></td>
@@ -632,12 +647,12 @@
                                                     </div>
                                                 </div>
                                                 <!-- Skupni strošek za nov način obračuna -->
-                                                <div class="row my-2 testc">
-                                                    <div class="col-lg-12 my-2 testc">
+                                                <div class="row my-2">
+                                                    <div class="col-lg-12 my-2">
                                                         <table class=" w-100">
                                                             <tr class="subtotal">
                                                                 <td>Vsota stroškov omrežnine:</td>
-                                                                <td class="px-3" id="expense-e-omr-new">1.14</td>
+                                                                <td class="px-3" id="expense-e-omr-new">0,00</td>
                                                                 <td>EUR</td>
                                                             </tr>
                                                         </table>
@@ -647,13 +662,13 @@
                                         </div>
                                     </div>
                                     <!-- Stroški starega načina obračuna -->
-                                    <div class="col-md-6 justify-content-center testc">
+                                    <div class="col-md-6 justify-content-center">
                                         <div class="subcard card my-3 shadow">
                                             <div class="card-body">
                                                 <h4 class="card-title text-center">TRENUTNI NAČIN OBRAČUNAVANJA OMREŽNINE</h4>
                                                 <!-- Stroški porabljene energije po tarifah (omrežnina) -->
-                                                <div class="row my-2 testc">
-                                                    <div class="col-md-12 testc">
+                                                <div class="row my-2">
+                                                    <div class="col-md-12">
                                                         <p>Spodaj so izračunani stroški po trenutnem načinu obračunavanja omrežnine.</p>
                                                     </div>
                                                     <div class="col-lg-6 my-2">
@@ -694,12 +709,12 @@
                                                     </div>
                                                 </div>
                                                 <!-- Skupni strošek za star način obračuna -->
-                                                <div class="row my-2 testc">
-                                                    <div class="col-lg-12 my-2 testc">
+                                                <div class="row my-2">
+                                                    <div class="col-lg-12 my-2">
                                                         <table class=" w-100">
                                                             <tr class="subtotal">
                                                                 <td>Vsota stroškov omrežnine:</td>
-                                                                <td class="px-3" id="expense-e-omr-old">2.14</td>
+                                                                <td class="px-3" id="expense-e-omr-old">0,00</td>
                                                                 <td>EUR</td>
                                                             </tr>
                                                         </table>
@@ -711,20 +726,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row collapse testc" id="collapse-energent">
+                        <div class="row collapse" id="collapse-energent">
                             <div class="container-fluid">
                                 <div class="row">
                                     <!-- Stroški za energent -->
-                                    <div class="col-md-12 justify-content-center testc">
+                                    <div class="col-md-12 justify-content-center">
                                         <div class="subcard card">
                                             <div class="card-body">
                                                 <h4 class="card-title text-center">ENERGENT</h4>
                                                 <!-- Stroški porabljene energije po tarifah (energent) -->
-                                                <div class="row my-2 testc">
-                                                    <div class="col-lg-12 my-2 testc">
+                                                <div class="row my-2">
+                                                    <div class="col-lg-12 my-2">
                                                         <p>Spodaj so izračunani stroški za porabo energenta.</p>
                                                     </div>
-                                                    <div class="col-xl-4 my-2 testc">
+                                                    <div class="col-xl-4 my-2">
                                                         <table class=" w-100">
                                                             <tr class="mt">
                                                                 <td class="in-cell-wt"><label for="expense-en-mt">Energent MT</label></td>
@@ -751,12 +766,12 @@
                                                     </div>
                                                 </div>
                                                 <!-- Skupni strošek za energent -->
-                                                <div class="row my-2 testc">
-                                                    <div class="col-lg-12 my-2 testc">
+                                                <div class="row my-2">
+                                                    <div class="col-lg-12 my-2">
                                                         <table class=" w-100">
                                                             <tr class="subtotal">
                                                                 <td>Vsota stroškov energenta:</td>
-                                                                <td class="px-3" id="expense-e-en">3.14</td>
+                                                                <td class="px-3" id="expense-e-en">0,00</td>
                                                                 <td>EUR</td>
                                                             </tr>
                                                         </table>
@@ -768,15 +783,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row testc">
+                        <div class="row">
                             <div class="container-fluid">
                                 <div class="row">
                                     <!-- Skupni stroški -->
-                                    <div class="col-md-12 justify-content-center testc">
+                                    <div class="col-md-12 justify-content-center">
                                         <div class="expCard card my-3 shadow-lg">
                                             <div class="card-body">
                                                 <h3 class="card-title text-center">SKUPNI STROŠEK</h3>
-                                                <div class="row my-2 testc">
+                                                <div class="row my-2">
                                                     <div class="d-flex flex-row">
                                                         <div class="helper-popup">
                                                             <!-- Trigger modal - odjemna skupina -->
@@ -784,11 +799,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row my-2 testc">
+                                                <div class="row my-2">
                                                     <table class="w-100 mx-2">
                                                         <tr class="total-base">
                                                             <td>Skupni strošek:</td>
-                                                            <td class="px-3 total-result" id="expense-total">4.14</td>
+                                                            <td class="px-3 total-result" id="expense-total">0,00</td>
                                                             <td class="total-result">EUR</td>
                                                         </tr>
                                                     </table>
@@ -806,7 +821,7 @@
 
         <!-- Noga strani -->
         <div class="row">
-            <div class="col-md-12 justify-content-center text-center testc">
+            <div class="col-md-12 justify-content-center text-center">
                 <!-- Trigger modal - Izjava o omejitvi odgovornosti -->
                 <div><i>&#169 Elektro Celje, <span id="footer-year"></span>. </i><u data-bs-toggle="modal" data-bs-target="#modal-izjava">Izjava o omejitvi odgovornosti</u></div>
             </div>
@@ -851,7 +866,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Presežna obračunska moč se določi za vsak časovni blok (ČB) na podlagi kompleksne razlike (koren vsote kvadratnih razlik) med 15-minutnimi meritvami izmerjene moči in dogovorjene moči. Izmerjena moč je povprečna moč, ki jo v 15-minutnem intervalu porabe izmeri pametni števec. Natančen izračun presežne moči je opisan v 15. in 16. členu <i>Akta o metodologiji za obračunavanje omrežnine za elektrooperaterje</i>.</p>
-                    <p>Izračunane presežne moči se obračunavajo skladno s <a href="https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-3431/akt-o-dolocitvi-tarifnih-postavk-za-omreznine-elektrooperaterjev" target="_blank">cenikom</a>, ki ga je objavila Agencija za energijo.</p>
+                    <p>Izračunane presežne moči se obračunavajo skladno s <a href="https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-3431/akt-o-dolocitvi-tarifnih-postavk-za-omreznine-elektrooperaterjev" target="_blank">cenikom</a>, ki ga je objavila Agencija za energijo, pri čemer je za stroške v letu 2024 upoštevan faktor utežitve presežne moči 0,9 (Akt priloga 2, 5. poglavje)</p>
                     <img class="img-presezne-moci" src="../media/presezne_moci.png">
                     <p class="text-center"><i>Primer izračuna presežne moči za ČB1.</i></p>
                     <p><b class="red-text">POMEMBNO</b>: Dve leti po začetku uporabe novega tarifnega sistema (šteto od 1.7.2023 dalje) se stroški presežnih moči <b>ne obračunavajo</b> uporabnikom sistema, ki imajo <b>priključno moč manjšo ali enako 43 kW</b> (oz. imajo varovalko manjšo od 3x63 A) <b>IN</b> v teh dveh letih niso spremenili dogovorjenih moči, ki jih je določil elektrooperater.</p>
@@ -938,7 +953,7 @@
                         <li>Visoka napetost (VN):
                             <ul>
                                 <li>VN + omrežje + T &lt; 2500 ur</li>
-                                <li>VN + omrežje + 6000 &gt; T &ge; 2500 ur</li>
+                                <li>VN + omrežje + 6000 &gt; T &le; 2500 ur</li>
                                 <li>VN + omrežje + T &ge; 6000 ur</li>
                             </ul>
                         </li>
@@ -1021,7 +1036,7 @@
     </div>
 
 
-    <script type="text/javascript" src="aaa.js" defer></script>
+    <script type="text/javascript" src="script.js" defer></script>
 
 </body>
 </html>

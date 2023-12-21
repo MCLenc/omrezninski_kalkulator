@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
 
-    // Pridobi vrednosti div elementov za vt, mt, et
+    // Pridobi vrednosti za izbor načina obračuna
     const radioButtons = document.querySelectorAll('input[name="nacObr"]');
     let et_elements = document.getElementsByClassName('et');
     let mt_elements = document.getElementsByClassName('mt');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     mt_elements[i].style.display = 'none';
                     vt_elements[i].style.display = 'none';
                 }
-                // Nastavi vse vnose uporabnike za VT/MT elemente na 0
+                // Nastavi vse vnose uporabnika za VT/MT elemente na 0
                 document.getElementById('price-en-mt').value = 0;
                 document.getElementById('price-en-vt').value = 0;
                 document.getElementById('e-mt').value = 0;
@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
     // V copyright tekst dodaj trenutno leto
-    // console.log(new Date().getFullYear());
     document.getElementById(`footer-year`).innerHTML = new Date().getFullYear();
 });
 
@@ -110,19 +109,19 @@ function getUserInputs() {
     for (let i = 1; i < 6; i++) {
         // Pridobi vnose energij
         let e_cbx = parseFloat(document.getElementById(`e-cb${i}`).value);
-        if (isNaN(e_cbx))    // Preveri, če je uporabnik pustil polje prazno
+        if (isNaN(e_cbx) || e_cbx < 0)    // Preveri, če je uporabnik pustil polje prazno ali če je vrednost negativna
         {e_cb.push(0);}
         else
         {e_cb.push(e_cbx);}
         // Pridobi vnose dog. moči
         let m_cbx = parseFloat(document.getElementById(`m-cb${i}`).value);
-        if (isNaN(m_cbx))
+        if (isNaN(m_cbx) || m_cbx < 0)
         {m_cb.push(0);}
         else
         {m_cb.push(m_cbx);}
         // Pridobi vnose presežkov
         let m_ex_cbx = parseFloat(document.getElementById(`m-ex-cb${i}`).value);
-        if (isNaN(m_ex_cbx))
+        if (isNaN(m_ex_cbx) || m_ex_cbx < 0)
         {m_ex_cb.push(0);}
         else
         {m_ex_cb.push(m_ex_cbx);}
@@ -131,19 +130,19 @@ function getUserInputs() {
     // Pridobi vnos uporabnika - porabljena energija in dogovorjene moči po tarifah
     // Pridobi vnos energije MT
     let e_mt = parseFloat(document.getElementById('e-mt').value);
-    if (isNaN(e_mt))
+    if (isNaN(e_mt) || e_mt < 0)
     {e_mt = 0;}
     // Pridobi vnos energije VT
     let e_vt = parseFloat(document.getElementById('e-vt').value);
-    if (isNaN(e_vt))
+    if (isNaN(e_vt) || e_vt < 0)
     {e_vt = 0;}
     // Pridobi vnos energije ET
     let e_et = parseFloat(document.getElementById('e-et').value);
-    if (isNaN(e_et))
+    if (isNaN(e_et) || e_et < 0)
     {e_et = 0;}
     // Pridobi vnos obračunske moči
     let m_obr = parseFloat(document.getElementById('m-obr').value);
-    if (isNaN(m_obr))
+    if (isNaN(m_obr) || m_obr < 0)
     {m_obr = 0;}
 
     // Pridobi vnos uporabnika - cena energenta
@@ -172,9 +171,9 @@ function showOutputs(cost_e_cb, cost_m_cb, cost_ex_m_cb, cost_agg_new,
     cost_en_mt, cost_en_vt, cost_en_et, cost_en_agg, cost_agg) {
     // Prikaži parcialne stroške omrežnine po ČB
     for (let i = 1; i < 6; i++) {
-    document.getElementById(`expense-e-cb${i}`).value = cost_e_cb[i-1];
-    document.getElementById(`expense-m-cb${i}`).value = cost_m_cb[i-1];
-    document.getElementById(`expense-m-ex-cb${i}`).value = cost_ex_m_cb[i-1];
+    document.getElementById(`expense-e-cb${i}`).value = cost_e_cb[i-1].toFixed(3);
+    document.getElementById(`expense-m-cb${i}`).value = cost_m_cb[i-1].toFixed(3);
+    document.getElementById(`expense-m-ex-cb${i}`).value = cost_ex_m_cb[i-1].toFixed(3);
     }
 
     // Prikaži skupne stroške omrežnine - nov način
@@ -182,19 +181,19 @@ function showOutputs(cost_e_cb, cost_m_cb, cost_ex_m_cb, cost_agg_new,
     document.getElementById('expense-e-omr-new').innerHTML = cost_agg_new_formatted;
 
     // Prikaži parcialne stroške omrežnine po tarifah
-    document.getElementById('expense-e-mt').value = cost_e_mt;
-    document.getElementById('expense-e-vt').value = cost_e_vt;
-    document.getElementById('expense-e-et').value = cost_e_et;
-    document.getElementById('expense-m-obr').value = cost_m_obr;
+    document.getElementById('expense-e-mt').value = cost_e_mt.toFixed(3);
+    document.getElementById('expense-e-vt').value = cost_e_vt.toFixed(3);
+    document.getElementById('expense-e-et').value = cost_e_et.toFixed(3);
+    document.getElementById('expense-m-obr').value = cost_m_obr.toFixed(3);
 
     // Prikaži skupne stroške omrežnine - star način
     let cost_agg_old_formatted = cost_agg_old.toLocaleString('sl-SI', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
     document.getElementById('expense-e-omr-old').innerHTML = cost_agg_old_formatted;
 
     // Prikaži parcialne stroške energenta
-    document.getElementById('expense-en-mt').value = cost_en_mt;
-    document.getElementById('expense-en-vt').value = cost_en_vt;
-    document.getElementById('expense-en-et').value = cost_en_et;
+    document.getElementById('expense-en-mt').value = cost_en_mt.toFixed(3);
+    document.getElementById('expense-en-vt').value = cost_en_vt.toFixed(3);
+    document.getElementById('expense-en-et').value = cost_en_et.toFixed(3);
 
     // Prikaži skupne stroške energentov
     let cost_en_agg_formatted = cost_en_agg.toLocaleString('sl-SI', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -217,21 +216,42 @@ function calculateExpenses() {
         
     // NASTAVI STATILČNE CENIKE STROŠKOV
     // Cena omrežnine za energijo [uporabniska_skupina][casovni_blok]
-    const price_e_cb = [[1, 2, 3.14, 4, 5], [1, 3, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
+    const price_e_cb = [[0.01925, 0.01844, 0.01837, 0.01838, 0.01847],
+                        [0.01454, 0.01389, 0.01369, 0.0133, 0.01329],
+                        [0.01263, 0.01204, 0.01181, 0.0114, 0.01139],
+                        [0.0081, 0.00797, 0.00762, 0.00742, 0.00736],
+                        [0.00829, 0.00813, 0.00776, 0.00753, 0.00748]];
     // Cena omrežnine za dogovorjeno moc [uporabniska_skupina][casovni_blok]
-    const price_m_cb = [[11, 12, 13, 14, 15], [11, 13, 13, 14, 15], [11, 12, 13, 14, 15], [11, 12, 13, 14, 15], [11, 12, 13, 14, 15]];
+    const price_m_cb = [[3.61324, 0.8824, 0.19137, 0.01316, 0],
+                        [5.33444, 1.08944, 0.14257, 0.00368, 0],
+                        [4.18586, 0.88405, 0.11318, 0.00107, 0],
+                        [1.95873, 0.44459, 0.07189, 0.0014, 0],
+                        [0.56683, 0.25891, 0.05109, 0.00186, 0]];
     // Cena omrežnine za presezno moc [uporabniska_skupina][casovni_blok]
-    const price_ex_m_cb = [[110, 120, 130, 140, 150], [110, 120, 130, 140, 150], [110, 120, 130, 140, 150], [110, 120, 130, 140, 150], [110, 120, 130, 140, 150]];
-
+    const price_ex_m_cb = [[3.61324, 0.8824, 0.19137, 0.01316, 0],
+                        [5.33444, 1.08944, 0.14257, 0.00368, 0],
+                        [4.18586, 0.88405, 0.11318, 0.00107, 0],
+                        [1.95873, 0.44459, 0.07189, 0.0014, 0],
+                        [0.56683, 0.25891, 0.05109, 0.00186, 0]];
+    // Faktor utežitve presežne moči za leto 2024
+    Fex = 0.9;
     // Cena omrežnine za energijo [napetostni_nivo][nacin_prikljucitve][odjemna_skupina] (za MT/VT/ET)
-    const price_e_vt = [[[1, 2, 3, 4], [30, 40]],
-                        [[300, 400], [3000, 4000]]];
-    const price_e_mt = [[[1, 2, 3, 4], [30, 40]],
-                        [[300, 400], [3000, 4000]]];
-    const price_e_et = [[[1, 2, 3, 4], [30, 40]],
-                        [[300, 400], [3000, 4000]]];
-    const price_m_obr = [[[1, 2, 3, 4], [30, 40]],
-                         [[300, 400], [3000, 4000]]];
+    const price_e_vt = [[[0.04308, 0.04308, 0.01144, 0.02290, 0.01689], [0.01218, 0.00765]],
+                        [[0.01252, 0.00789], [0.00097, 0.00074]],
+                        [[0.00153, 0.00145, 0.00158]]];
+    
+    const price_e_mt = [[[0.03311, 0.03311, 0.00882, 0.01759, 0.01298], [0.00936, 0.00592]],
+                        [[0.00964, 0.00608], [0.00075, 0.00057]],
+                        [[0.00118, 0.00111, 0.00123]]];
+    
+    const price_e_et = [[[0.03973, 0.03973, 0, 0, 0], [0, 0]],
+                        [[0, 0], [0, 0]],
+                        [[0, 0, 0]]];
+
+    const price_m_obr = [[[0.79600, 0.79600, 2.37398, 4.74796, 5.71190], [3.60756, 4.33074]], 
+                         [[2.47536, 3.22148], [3.05375, 3.09043]],
+                         [[1.10050, 1.02089, 0.95460]]];
+
 
 
     // IZRAČUNAJ STROŠKE OMREŽNINE
@@ -251,7 +271,9 @@ function calculateExpenses() {
     let odjSk = document.getElementById('warn-odjSk');
     odjSk.style.display = 'none';
 
+    // Pridobi vnos uporabnika za izbor uporabniške skupine
     const usk_selectVal = document.querySelector('input[name="usk"]:checked').value;
+    // Pridobi vnos uporabnika za izbor parametrov odjemne skupine
     const odjSk_selectVal = document.querySelector('input[name="odjSk"]:checked').value;
     const nacPrik_selectVal = document.querySelector('input[name="nacPrik"]:checked').value;
     const napNivo_selectVal = document.querySelector('input[name="napNivo"]:checked').value;
@@ -271,17 +293,23 @@ function calculateExpenses() {
         cost_e_et = e_et * price_e_et[0][0][1];
         cost_m_obr = m_obr * price_m_obr[0][0][1];
     }
-    else if (napNivo_selectVal == "NN" && nacPrik_selectVal == "omrezje" && odjSk_selectVal == "tPod2500h") {
+    else if (napNivo_selectVal == "NN" && nacPrik_selectVal == "omrezje" && odjSk_selectVal == "polnjenjeEV") {
         cost_e_mt = e_mt * price_e_mt[0][0][2];
         cost_e_vt = e_vt * price_e_vt[0][0][2];
         cost_e_et = e_et * price_e_et[0][0][2];
         cost_m_obr = m_obr * price_m_obr[0][0][2];
     }
-    else if (napNivo_selectVal == "NN" && nacPrik_selectVal == "omrezje" && odjSk_selectVal == "tNad2500h") {
+    else if (napNivo_selectVal == "NN" && nacPrik_selectVal == "omrezje" && odjSk_selectVal == "tPod2500h") {
         cost_e_mt = e_mt * price_e_mt[0][0][3];
         cost_e_vt = e_vt * price_e_vt[0][0][3];
         cost_e_et = e_et * price_e_et[0][0][3];
         cost_m_obr = m_obr * price_m_obr[0][0][3];
+    }
+    else if (napNivo_selectVal == "NN" && nacPrik_selectVal == "omrezje" && odjSk_selectVal == "tNad2500h") {
+        cost_e_mt = e_mt * price_e_mt[0][0][4];
+        cost_e_vt = e_vt * price_e_vt[0][0][4];
+        cost_e_et = e_et * price_e_et[0][0][4];
+        cost_m_obr = m_obr * price_m_obr[0][0][4];
     }
     else if (napNivo_selectVal == "NN" && nacPrik_selectVal == "zbiralke" && odjSk_selectVal == "tPod2500h") {
         cost_e_mt = e_mt * price_e_mt[0][1][0];
@@ -320,6 +348,25 @@ function calculateExpenses() {
         cost_e_et = e_et * price_e_et[1][1][1];
         cost_m_obr = m_obr * price_m_obr[1][1][1];
     }
+    // Stroški omrežnine v primeru izbire napetostnega nivoja VN
+    else if (napNivo_selectVal == "VN" && nacPrik_selectVal == "omrezje" && odjSk_selectVal == "tNad2500h") {
+        cost_e_mt = e_mt * price_e_mt[2][0][0];
+        cost_e_vt = e_vt * price_e_vt[2][0][0];
+        cost_e_et = e_et * price_e_et[2][0][0];
+        cost_m_obr = m_obr * price_m_obr[2][0][0];
+    }
+    else if (napNivo_selectVal == "VN" && nacPrik_selectVal == "omrezje" && odjSk_selectVal == "tMed2500In6000h") {
+        cost_e_mt = e_mt * price_e_mt[2][0][1];
+        cost_e_vt = e_vt * price_e_vt[2][0][1];
+        cost_e_et = e_et * price_e_et[2][0][1];
+        cost_m_obr = m_obr * price_m_obr[2][0][1];
+    }
+    else if (napNivo_selectVal == "VN" && nacPrik_selectVal == "omrezje" && odjSk_selectVal == "tNad6000h") {
+        cost_e_mt = e_mt * price_e_mt[2][0][2];
+        cost_e_vt = e_vt * price_e_vt[2][0][2];
+        cost_e_et = e_et * price_e_et[2][0][2];
+        cost_m_obr = m_obr * price_m_obr[2][0][2];
+    }
     // V primeru, da uporabnik izbere neveljavno kombinacijo odjemne skupine nastavi stroške na 0 EUR in prikaži obvestilo
     else {
         cost_e_mt = 0;
@@ -330,6 +377,7 @@ function calculateExpenses() {
         odjSk.style.display = 'block';
     }
 
+
     
     // Izračunaj stroške omrežnine (glede na izbrano uporabniško skupino) - stroški novega načina omrežnine
     switch (usk_selectVal) {
@@ -337,14 +385,14 @@ function calculateExpenses() {
             for (let i = 0; i < 5; i++) {
                 cost_e_cb.push(e_cb[i] * price_e_cb[0][i]);
                 cost_m_cb.push(m_cb[i] * price_m_cb[0][i]);
-                cost_ex_m_cb.push(m_ex_cb[i] * price_ex_m_cb[0][i]);
+                cost_ex_m_cb.push(Fex * m_ex_cb[i] * price_ex_m_cb[0][i]);
             }
             break;
         case 'usk-1':
             for (let i = 0; i < 5; i++) {
                 cost_e_cb.push(e_cb[i] * price_e_cb[1][i]);
                 cost_m_cb.push(m_cb[i] * price_m_cb[1][i]);
-                cost_ex_m_cb.push(m_ex_cb[i] * price_ex_m_cb[1][i]);
+                cost_ex_m_cb.push(Fex * m_ex_cb[i] * price_ex_m_cb[1][i]);
             }
             break;
         
@@ -352,21 +400,21 @@ function calculateExpenses() {
             for (let i = 0; i < 5; i++) {
                 cost_e_cb.push(e_cb[i] * price_e_cb[2][i]);
                 cost_m_cb.push(m_cb[i] * price_m_cb[2][i]);
-                cost_ex_m_cb.push(m_ex_cb[i] * price_ex_m_cb[2][i]);
+                cost_ex_m_cb.push(Fex * m_ex_cb[i] * price_ex_m_cb[2][i]);
             }
             break;
         case 'usk-3':
             for (let i = 0; i < 5; i++) {
                 cost_e_cb.push(e_cb[i] * price_e_cb[3][i]);
                 cost_m_cb.push(m_cb[i] * price_m_cb[3][i]);
-                cost_ex_m_cb.push(m_ex_cb[i] * price_ex_m_cb[3][i]);
+                cost_ex_m_cb.push(Fex * m_ex_cb[i] * price_ex_m_cb[3][i]);
             }
             break;
         case 'usk-4':
             for (let i = 0; i < 5; i++) {
                 cost_e_cb.push(e_cb[i] * price_e_cb[4][i]);
                 cost_m_cb.push(m_cb[i] * price_m_cb[4][i]);
-                cost_ex_m_cb.push(m_ex_cb[i] * price_ex_m_cb[4][i]);
+                cost_ex_m_cb.push(Fex * m_ex_cb[i] * price_ex_m_cb[4][i]);
             }
             break;
         default:
