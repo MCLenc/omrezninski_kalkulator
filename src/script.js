@@ -1,14 +1,18 @@
+
+let nacObr_selectVal = '2-tarif';
+
+
 // EventListener funkcije - te so na voljo po tem, ko se naloži DOM
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Add an event listener for calculating expenses
+    // Sproži funkcijo za izračun, ko je kliknjen gumb "Izračunaj stroške"
     const calculate_expenses_button = document.getElementById('calculate_button');
     if (calculate_expenses_button) {
         calculate_expenses_button.addEventListener('click', calculateExpenses);
     }
     
 
-    // Add an event listener for clearing display
+    // Sproži funkcijo za ponastavitev, ko je kliknjen gumb "Ponastavi"
     const clear_display_button = document.getElementById('clear_display');
     if (clear_display_button) {
         clear_display_button.addEventListener('click', clearDisplay);
@@ -16,23 +20,24 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
     // Pridobi vrednosti za izbor načina obračuna
-    const radioButtons = document.querySelectorAll('input[name="nacObr"]');
+    const radioButtons_nacObr = document.querySelectorAll('input[name="nacObr"]');
     let et_elements = document.getElementsByClassName('et');
     let mt_elements = document.getElementsByClassName('mt');
     let vt_elements = document.getElementsByClassName('vt');
 
 
     // Prikaži VT/MT ali ET elemente glede na izbiro načina obračuna
-    radioButtons.forEach(function (radioButton) {
+    radioButtons_nacObr.forEach(function (radioButton_nacObr) {
         // Add an event listener to each radio button
-        radioButton.addEventListener('change', function () {
+        radioButton_nacObr.addEventListener('change', function () {
             // Preveri izbiro gumba za način obračuna
-            if (radioButton.value === '1-tarif') {
+            if (radioButton_nacObr.value === '1-tarif') {
                 // Prikaži ET elemente
                 for (let i=0; i<et_elements.length; i+=1){
                     et_elements[i].style.display = 'block';
                     mt_elements[i].style.display = 'none';
                     vt_elements[i].style.display = 'none';
+                    nacObr_selectVal = '1-tarif';
                 }
                 // Nastavi vse vnose uporabnika za VT/MT elemente na 0
                 document.getElementById('price-en-mt').value = 0;
@@ -40,16 +45,64 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('e-mt').value = 0;
                 document.getElementById('e-vt').value = 0;
             }
-            else if (radioButton.value === '2-tarif') {
-                // Show VT/MT
+            else if (radioButton_nacObr.value === '2-tarif') {
+                // Prikaži VT/MT elemente
                 for (let i=0; i<et_elements.length; i+=1){
                     et_elements[i].style.display = 'none';
                     mt_elements[i].style.display = 'block';
                     vt_elements[i].style.display = 'block';
+                    nacObr_selectVal = '2-tarif';
                 }
                 // Nastavi vse vnose uporabnike za ET elemente na 0
                 document.getElementById('price-en-et').value = 0;
                 document.getElementById('e-et').value = 0;
+            }
+        });
+    });
+
+
+    // Pridobi vrednosti za izbor načina obračuna
+    const radioButtons_sezona = document.querySelectorAll('input[name="sezona"]');
+    let cb_1_elements = document.getElementsByClassName('cb-1');
+    let cb_2_elements = document.getElementsByClassName('cb-2');
+    let cb_3_elements = document.getElementsByClassName('cb-3');
+    let cb_4_elements = document.getElementsByClassName('cb-4');
+    let cb_5_elements = document.getElementsByClassName('cb-5');
+    
+
+    // Prikaži elemente glede na sezone.
+    // Prikaži ČB1-ČB4 za višjo sezono in ČB2-ČB5 za nižjo sezono
+    radioButtons_sezona.forEach(function (radioButton_sezona) {
+        // Add an event listener to each radio button
+        radioButton_sezona.addEventListener('change', function () {
+            // Preveri izbiro gumba za sezono
+            if (radioButton_sezona.value === 'visja') {
+                // Prikaži elemente ČB1-ČB4
+                for (let i=0; i<cb_1_elements.length; i+=1){
+                    cb_1_elements[i].style.display = 'block';
+                    cb_2_elements[i].style.display = 'block';
+                    cb_3_elements[i].style.display = 'block';
+                    cb_4_elements[i].style.display = 'block';
+                    cb_5_elements[i].style.display = 'none';
+                }
+                // Nastavi vse vnose uporabnika za ČB5 elemente na 0
+                document.getElementById('e-cb5').value = 0;
+                document.getElementById('m-cb5').value = 0;
+                document.getElementById('m-ex-cb5').value = 0;
+            }
+            else if (radioButton_sezona.value === 'nizja') {
+                // Prikaži elemente ČB2-ČB5
+                for (let i=0; i<et_elements.length; i+=1){
+                    cb_1_elements[i].style.display = 'none';
+                    cb_2_elements[i].style.display = 'block';
+                    cb_3_elements[i].style.display = 'block';
+                    cb_4_elements[i].style.display = 'block';
+                    cb_5_elements[i].style.display = 'block';
+                }
+                // Nastavi vse vnose uporabnika za ČB1 elemente na 0
+                document.getElementById('e-cb1').value = 0;
+                document.getElementById('m-cb1').value = 0;
+                document.getElementById('m-ex-cb1').value = 0;
             }
         });
     });
@@ -98,8 +151,8 @@ function clearDisplay() {
 
 
 
-// Pridobi vnose uporabnika
-function getUserInputs() {
+// Pridobi vnešene vrednosti uporabnika
+function getUserInputValues() {
     // Polji za količino porabljene energije in dogovorjene moči po ČB (vnos uporabnika)
     let e_cb = [];
     let m_cb = [];
@@ -211,7 +264,7 @@ function showOutputs(cost_e_cb, cost_m_cb, cost_ex_m_cb, cost_agg_new,
 function calculateExpenses() {
     
     // Pridobi vnose uporabnika
-    const[e_cb, m_cb, m_ex_cb, e_mt, e_vt, e_et, m_obr, price_en_mt, price_en_vt, price_en_et] = getUserInputs();
+    const[e_cb, m_cb, m_ex_cb, e_mt, e_vt, e_et, m_obr, price_en_mt, price_en_vt, price_en_et] = getUserInputValues();
 
         
     // NASTAVI STATILČNE CENIKE STROŠKOV
@@ -375,6 +428,22 @@ function calculateExpenses() {
         cost_m_obr = 0;
         // Prikaži opozorilo - napačno izbrana kombinacija: vrsta odjema, način priključitve, nap. nivo
         odjSk.style.display = 'block';
+    }
+
+
+    // Skrij opozorilo - napačna izbira odjemne skupine glede na izbran način obračuna
+    let odjSk_et = document.getElementById('warn-odjSk-et');
+    odjSk_et.style.display = 'none';
+    
+    // Prikaži opozorilo - napačna izbira odjemne skupine glede na izbran način obračuna
+    if (nacObr_selectVal == '1-tarif' && (odjSk_selectVal != "gospodinjstvo" && odjSk_selectVal != "bmm")) {
+        // Prikaži opozorilo
+        odjSk_et.style.display = 'block';
+        cost_e_et = 0;
+    }
+    else {
+        // Skrij opozorilo
+        odjSk_et.style.display = 'none';
     }
 
 

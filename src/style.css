@@ -44,6 +44,13 @@ hr {
     width: 250px;
 }
 
+.img-me {
+    display: inline-block;
+    max-height: 100%;
+    max-width: 100%;
+    width: 120px;
+}
+
 .img-graf-porabe {
     display: block;
     width: 90%;
@@ -53,7 +60,7 @@ hr {
     margin-right: auto;
 }
 
-.img-casovni-bloki {
+.img-casovni-bloki-sezone {
     display: block;
     max-width: 90%;
     max-height: 510px;
@@ -97,8 +104,8 @@ hr {
 }
 
 .helper-popup {
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .head-title {
@@ -215,7 +222,7 @@ hr {
     margin-bottom: 3px;
     margin-left: 1px;
     margin-right: 1px;
-    display: block;
+    display: none;
 }
 
 .mt {
@@ -291,6 +298,10 @@ hr {
 }
 
 .warn-odjSk {
+    display: none;
+}
+
+.warn-odjSk-et {
     display: none;
 }
 
