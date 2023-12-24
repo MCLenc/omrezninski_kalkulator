@@ -50,8 +50,8 @@
                             </div>
                         </p>
                         <p>Spodaj so podani trije kalkulatorji. Na levi strani je na voljo kalkulator za informativni izračun mesečnih stroškov električne energije po trenutnem načinu obračunavanja omrežnine (dvotarifni obračun (VT/MT) ali eno tarifni obračun (ET)), ki bo v veljevi do 30.6.2024. Na desni strani je na voljo kalkulator za informativni izračun mesečnih stroškov električne energije po novem načinu obračunavanja omrežnine energije (časovni bloki), ki bo v veljevi od 1.7.2024 dalje. Podatke lahko vnesete le v en kalkulator ali v oba.</p>
-                        <p>Opcijsko lahko s tretjim kalkulatorjem omogočite izračun mesečnih stroškov energenta. Ta se računa posebej in sicer po tarifah (MT/VT ali ET) ter se prišteje v skupni strošek na dnu strani.</p>
-                        <p>Ko vpišete podatke v razdelku IZRAČUN STROŠKOV kliknite gumb <i><b>Izračunaj stroške</b></i>. Če želite ponastaviti vse vrednosti kliknite na gumb gumb <i><b>Ponastavi</b></i>. Na dnu strani najdete tudi razdelek <b>SKUPNI STROŠEK</b>, kjer so sešteti stroški iz vseh uporabljenih kalkulatorjev. Vsi delni stroški so zaokroženi na tretji decimalki, skupni stroški pa so zaokroženi na drugi decimalki.</p>
+                        <p>Opcijsko lahko s tretjim kalkulatorjem omogočite izračun mesečnih stroškov energenta. Ta se računa posebej in sicer po tarifah (MT/VT ali ET).</p>
+                        <p>Ko vpišete podatke v razdelku IZRAČUN STROŠKOV kliknite gumb <i><b>Izračunaj stroške</b></i>. Če želite ponastaviti vse vrednosti kliknite na gumb <i><b>Ponastavi</b></i></p>
                         <p>Vse informacije navedene na tej strani so informativne narave. Za več podrobnosti si preberite Izjavo o omejitvi odgovornosti na dnu strani.</p>
                     </div>
                 </div>
@@ -413,7 +413,7 @@
                                                         <hr class="m-2">
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p>Za vsak časovni blok (ČB) vnesite število presežkov. Vsak presežek se smatra kot 1kW nad dogovorjeno močjo. Če ste npr. v ČB1 5-krat presegli vašo dogovorjeno moč za 1kW ali pa ste 1-krat presegli vašo dogovorjeno moč za 5 kW v spodnje polje za št. presežkov ČB1 vpišite 5.</p>
+                                                        <p>Za vsak časovni blok (ČB) vnesite število presežkov. Vsak presežek se smatra kot 1kW nad dogovorjeno močjo. Če ste npr. v ČB2 5-krat presegli vašo dogovorjeno moč za 1kW ali pa ste 1-krat presegli vašo dogovorjeno moč za 5 kW v spodnje polje za št. presežkov ČB2 vpišite 5.</p>
                                                     </div>
                                                     <div class="col-lg-6 my-2">
                                                         <table class=" w-100">
@@ -471,7 +471,7 @@
                             <h3 class="card-title text-center">VNESITE PODATKE ZA ENERGENT</h3>
                         </div>
                         <div class="row">
-                            <div>Ali želite v izračunu upoštevati tudi stroške energenta? Stroški energenta se bodo s tem prišteli stroškom omrežnine po starem obračunu (MT/VT ali ET) in novem obračunu (ČB).</div>
+                            <div>Ali želite v izračunu upoštevati tudi stroške energenta?</div>
                             <div class="my-2">
                                 <input type="checkbox" id="energent-choice" data-bs-toggle="collapse" data-bs-target="#collapse-energent">
                                 <label for="energent-choice">DA</label><br>
@@ -903,7 +903,7 @@
                     <span data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <p>Presežna obračunska moč se določi za vsak časovni blok (ČB) na podlagi kompleksne razlike (koren vsote kvadratnih razlik) med 15-minutnimi meritvami izmerjene moči in dogovorjene moči. Izmerjena moč je povprečna moč, ki jo v 15-minutnem intervalu porabe izmeri pametni števec. Natančen izračun presežne moči je opisan v 15. in 16. členu <i>Akta o metodologiji za obračunavanje omrežnine za elektrooperaterje</i>.</p>
+                    <p>Presežna obračunska moč se določi za vsak časovni blok (ČB) na podlagi kompleksne razlike med 15-minutnimi meritvami izmerjene moči in dogovorjene moči. Izmerjena moč je povprečna moč, ki jo v 15-minutnem intervalu porabe izmeri pametni števec. Natančen izračun presežne moči je opisan v 15. in 16. členu <i>Akta o metodologiji za obračunavanje omrežnine za elektrooperaterje</i>.</p>
                     <p>Izračunane presežne moči se obračunavajo skladno s <a href="https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-3431/akt-o-dolocitvi-tarifnih-postavk-za-omreznine-elektrooperaterjev" target="_blank">cenikom</a>, ki ga je objavila Agencija za energijo, pri čemer je za stroške v letu 2024 upoštevan faktor utežitve presežne moči 0,9 (Akt priloga 2, 5. poglavje)</p>
                     <img class="img-presezne-moci" src="media/presezne_moci.png">
                     <p class="text-center"><i>Primer izračuna presežne moči za ČB1.</i></p>
@@ -960,10 +960,10 @@
                     <span data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <p>Dogovorjena obračunska moč je moč, ki jo določi uporabnik sistema ali elektrooperater (v skladu s 12. in 14. členom <i>Akta o metodologiji za obračunavanje omrežnine za elektrooperaterje</i>).</p>
+                    <p>Dogovorjena obračunska moč je moč, ki jo določite vi (uporabnik sistema) ali elektrooperater (slednji v skladu s 12. in 14. členom <i>Akta o metodologiji za obračunavanje omrežnine za elektrooperaterje</i>).</p>
                     <p class="red-text">Dogovorjene moči za posamezne časovne bloke, ki jih je določil elektrooperater najdete na vašem računu za električno energijo za mesec september 2023.</p>
-                    <p>Dogovorjena moč ne sme biti večja od priključne moči iz soglasja za priključitev, pri čemer priključna moč iz soglasja za priključitev za potrebe določitve obračunske moči pomeni tudi moč, določeno z dejanskim omejevalcem toka (npr. varovalko, odklopnikom, itd.) na prevzemno-predajnem mestu.</p>
-                    <p>Dogovorjeno moč si lahko predstavljate kot "virtualno varovalko", ki ima vrednost moči med priključno močjo vaše dejanske fizične varovalke in neko minimalno močjo (določeno v Aktu). Ker dogovorjena moč velja v posameznem časovnem bloku bo torej ta "virtualna varovalka" predstavljala maksimalno moč, ki jo lahko dosežete z vašo porabo v posameznem časovnem bloku, brez, da bi plačali presežno moč.</p>
+                    <p>Dogovorjena moč ne sme biti večja od priključne moči iz vašega soglasja za priključitev, pri čemer priključna moč pomeni tudi moč, določena z dejanskim omejevalcem toka (npr. vašo varovalko, odklopnikom, itd.) na v priključni omarici.</p>
+                    <p>Dogovorjeno moč si lahko predstavljate kot neke vrste "virtualno varovalko", ki ima vrednost moči med priključno močjo vaše dejanske fizične varovalke in neko minimalno močjo (določeno v Aktu). Ker posamezna dogovorjena moč velja za posamezni časovni blok bo torej ta "virtualna varovalka" predstavljala maksimalno moč, ki jo lahko dosežete z vašo porabo v posameznem časovnem bloku, brez, da bi plačali presežno moč (presežke).</p>
                     <p>Dogovorjena moč za vsak naslednji časovni blok mora biti večja ali enaka dogovorjeni moči prejšnjega časovnega bloka (npr. dogovorjena moč za ČB2 mora biti večja ali enaka dogovorjeni moči za ČB1 in dogovorjena moč za ČB3 mora biti večja ali enaka dogovorjeni moči za ČB2, itd.)</p>
                     <img class="img-graf-porabe" src="media/graf_porabe.png">
                     <p class="text-center"><i>Primer grafa izmerjene porabe in dogovorjenih moči v različnih časovnih blokih za <b>delovni dan</b> v <b>višji sezoni</b>.</i></p>
@@ -981,7 +981,7 @@
                     <span data-bs-dismiss="modal" aria-label="Close" aria-hidden="true">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <p>Odjemna skupina je skupina, v katero se razvrsti uporabnike sistema (odjemalce el. energije). Odjemna skupina je sestavljena iz informacije o napetostnem nivoju (nizka napetost - NN, srednja napetost - SN, visoka napetost - VN), načinu priključitve (zbiralke ali izvod) in vrsti odjema za posamezno merilno mesto. Uporabniki sistema so razvrščeni v odjemne skupine potrebe obračuna uporabe elektroenergetskega sistema oz. stroškov omrežnine, ki jih morajo plačati.</p>
+                    <p>Odjemna skupina je skupina, v katero se razvrsti uporabnike sistema (odjemalce el. energije). Odjemna skupina je sestavljena iz informacije o napetostnem nivoju (nizka napetost - NN, srednja napetost - SN, visoka napetost - VN), načinu priključitve (zbiralke ali izvod) in vrsti odjema za posamezno merilno mesto. Uporabniki sistema so razvrščeni v odjemne skupine za potrebe obračuna uporabe elektroenergetskega sistema oz. stroškov omrežnine, ki jih morajo plačati.</p>
                     <p>Za odjemne skupine so veljavne le spodnje kombinacije napetostnega nivoja, načina priključitve in vrste odjema. Prosimo nastavite eno izmed sledečih kombinacij.</p>
                     <ul>
                         <li>Nizka napetost (NN):
