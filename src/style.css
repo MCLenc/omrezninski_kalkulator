@@ -133,7 +133,7 @@ hr {
 }
 
 .in-cell-w {
-    width: 70px;
+    width: 90px;
     color: black;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -271,6 +271,7 @@ hr {
 
 .in-number {
     background-color: #ffffff6a;
+    width: 100px;
     text-align: center;
     border: none;    
 }
