@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (calculate_expenses_button) {
         calculate_expenses_button.addEventListener('click', calculateExpenses);
     }
-    
+
 
     // Sproži funkcijo za ponastavitev, ko je kliknjen gumb "Ponastavi"
     const clear_display_button = document.getElementById('clear_display');
     if (clear_display_button) {
         clear_display_button.addEventListener('click', clearDisplay);
     }
-    
+
 
     // Pridobi vrednosti za izbor načina obračuna
     const radioButtons_nacObr = document.querySelectorAll('input[name="nacObr"]');
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Preveri izbiro gumba za način obračuna
             if (radioButton_nacObr.value === '1-tarif') {
                 // Prikaži ET elemente
-                for (let i=0; i<et_elements.length; i+=1){
+                for (let i = 0; i < et_elements.length; i += 1) {
                     et_elements[i].style.display = 'block';
                     mt_elements[i].style.display = 'none';
                     vt_elements[i].style.display = 'none';
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             else if (radioButton_nacObr.value === '2-tarif') {
                 // Prikaži VT/MT elemente
-                for (let i=0; i<et_elements.length; i+=1){
+                for (let i = 0; i < et_elements.length; i += 1) {
                     et_elements[i].style.display = 'none';
                     mt_elements[i].style.display = 'block';
                     vt_elements[i].style.display = 'block';
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let cb_3_elements = document.getElementsByClassName('cb-3');
     let cb_4_elements = document.getElementsByClassName('cb-4');
     let cb_5_elements = document.getElementsByClassName('cb-5');
-    
+
 
     // Prikaži elemente glede na sezone.
     // Prikaži ČB1-ČB4 za višjo sezono in ČB2-ČB5 za nižjo sezono
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Preveri izbiro gumba za sezono
             if (radioButton_sezona.value === 'visja') {
                 // Prikaži elemente ČB1-ČB4
-                for (let i=0; i<cb_1_elements.length; i+=1){
+                for (let i = 0; i < cb_1_elements.length; i += 1) {
                     cb_1_elements[i].style.display = 'block';
                     cb_2_elements[i].style.display = 'block';
                     cb_3_elements[i].style.display = 'block';
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             else if (radioButton_sezona.value === 'nizja') {
                 // Prikaži elemente ČB2-ČB5
-                for (let i=0; i<cb_1_elements.length; i+=1){
+                for (let i = 0; i < cb_1_elements.length; i += 1) {
                     cb_1_elements[i].style.display = 'none';
                     cb_2_elements[i].style.display = 'block';
                     cb_3_elements[i].style.display = 'block';
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    
+
     // V copyright tekst dodaj trenutno leto
     document.getElementById(`footer-year`).innerHTML = new Date().getFullYear();
 });
@@ -163,53 +163,41 @@ function getUserInputValues() {
         // Pridobi vnose energij
         let e_cbx = parseFloat(document.getElementById(`e-cb${i}`).value);
         if (isNaN(e_cbx) || e_cbx < 0)    // Preveri, če je uporabnik pustil polje prazno ali če je vrednost negativna
-        {e_cb.push(0);}
-        else
-        {e_cb.push(e_cbx);}
+        { e_cb.push(0); }
+        else { e_cb.push(e_cbx); }
         // Pridobi vnose dog. moči
         let m_cbx = parseFloat(document.getElementById(`m-cb${i}`).value);
-        if (isNaN(m_cbx) || m_cbx < 0)
-        {m_cb.push(0);}
-        else
-        {m_cb.push(m_cbx);}
+        if (isNaN(m_cbx) || m_cbx < 0) { m_cb.push(0); }
+        else { m_cb.push(m_cbx); }
         // Pridobi vnose presežkov
         let m_ex_cbx = parseFloat(document.getElementById(`m-ex-cb${i}`).value);
-        if (isNaN(m_ex_cbx) || m_ex_cbx < 0)
-        {m_ex_cb.push(0);}
-        else
-        {m_ex_cb.push(m_ex_cbx);}
+        if (isNaN(m_ex_cbx) || m_ex_cbx < 0) { m_ex_cb.push(0); }
+        else { m_ex_cb.push(m_ex_cbx); }
     }
-    
+
     // Pridobi vnos uporabnika - porabljena energija in dogovorjene moči po tarifah
     // Pridobi vnos energije MT
     let e_mt = parseFloat(document.getElementById('e-mt').value);
-    if (isNaN(e_mt) || e_mt < 0)
-    {e_mt = 0;}
+    if (isNaN(e_mt) || e_mt < 0) { e_mt = 0; }
     // Pridobi vnos energije VT
     let e_vt = parseFloat(document.getElementById('e-vt').value);
-    if (isNaN(e_vt) || e_vt < 0)
-    {e_vt = 0;}
+    if (isNaN(e_vt) || e_vt < 0) { e_vt = 0; }
     // Pridobi vnos energije ET
     let e_et = parseFloat(document.getElementById('e-et').value);
-    if (isNaN(e_et) || e_et < 0)
-    {e_et = 0;}
+    if (isNaN(e_et) || e_et < 0) { e_et = 0; }
     // Pridobi vnos obračunske moči
     let m_obr = parseFloat(document.getElementById('m-obr').value);
-    if (isNaN(m_obr) || m_obr < 0)
-    {m_obr = 0;}
+    if (isNaN(m_obr) || m_obr < 0) { m_obr = 0; }
 
     // Pridobi vnos uporabnika - cena energenta
     let price_en_mt = parseFloat(document.getElementById('price-en-mt').value);
-    if (Number.isNaN(price_en_mt))
-    {price_en_mt = 0;}
+    if (Number.isNaN(price_en_mt)) { price_en_mt = 0; }
 
     let price_en_vt = parseFloat(document.getElementById('price-en-vt').value);
-    if (Number.isNaN(price_en_vt))
-    {price_en_vt = 0;}
-    
+    if (Number.isNaN(price_en_vt)) { price_en_vt = 0; }
+
     let price_en_et = parseFloat(document.getElementById('price-en-et').value);
-    if (Number.isNaN(price_en_et))
-    {price_en_et = 0;}
+    if (Number.isNaN(price_en_et)) { price_en_et = 0; }
 
     // Vrni vrednosti
     return [e_cb, m_cb, m_ex_cb, e_mt, e_vt, e_et, m_obr, price_en_mt, price_en_vt, price_en_et];
@@ -224,9 +212,9 @@ function showOutputs(cost_e_cb, cost_m_cb, cost_ex_m_cb, cost_agg_new,
     cost_en_mt, cost_en_vt, cost_en_et, cost_en_agg, cost_agg) {
     // Prikaži parcialne stroške omrežnine po ČB
     for (let i = 1; i < 6; i++) {
-    document.getElementById(`expense-e-cb${i}`).value = cost_e_cb[i-1].toFixed(3);
-    document.getElementById(`expense-m-cb${i}`).value = cost_m_cb[i-1].toFixed(3);
-    document.getElementById(`expense-m-ex-cb${i}`).value = cost_ex_m_cb[i-1].toFixed(3);
+        document.getElementById(`expense-e-cb${i}`).value = cost_e_cb[i - 1].toFixed(3);
+        document.getElementById(`expense-m-cb${i}`).value = cost_m_cb[i - 1].toFixed(3);
+        document.getElementById(`expense-m-ex-cb${i}`).value = cost_ex_m_cb[i - 1].toFixed(3);
     }
 
     // Prikaži skupne stroške omrežnine - nov način
@@ -262,30 +250,30 @@ function showOutputs(cost_e_cb, cost_m_cb, cost_ex_m_cb, cost_agg_new,
 
 // Izračunaj stroške
 function calculateExpenses() {
-    
-    // Pridobi vnose uporabnika
-    const[e_cb, m_cb, m_ex_cb, e_mt, e_vt, e_et, m_obr, price_en_mt, price_en_vt, price_en_et] = getUserInputValues();
 
-        
+    // Pridobi vnose uporabnika
+    const [e_cb, m_cb, m_ex_cb, e_mt, e_vt, e_et, m_obr, price_en_mt, price_en_vt, price_en_et] = getUserInputValues();
+
+
     // NASTAVI STATILČNE CENIKE STROŠKOV
     // Cena omrežnine za energijo [uporabniska_skupina][casovni_blok]
     const price_e_cb = [[0.01925, 0.01844, 0.01837, 0.01838, 0.01847],
-                        [0.01454, 0.01389, 0.01369, 0.0133, 0.01329],
-                        [0.01263, 0.01204, 0.01181, 0.0114, 0.01139],
-                        [0.0081, 0.00797, 0.00762, 0.00742, 0.00736],
-                        [0.00829, 0.00813, 0.00776, 0.00753, 0.00748]];
+    [0.01454, 0.01389, 0.01369, 0.0133, 0.01329],
+    [0.01263, 0.01204, 0.01181, 0.0114, 0.01139],
+    [0.0081, 0.00797, 0.00762, 0.00742, 0.00736],
+    [0.00829, 0.00813, 0.00776, 0.00753, 0.00748]];
     // Cena omrežnine za dogovorjeno moc [uporabniska_skupina][casovni_blok]
     const price_m_cb = [[3.61324, 0.8824, 0.19137, 0.01316, 0],
-                        [5.33444, 1.08944, 0.14257, 0.00368, 0],
-                        [4.18586, 0.88405, 0.11318, 0.00107, 0],
-                        [1.95873, 0.44459, 0.07189, 0.0014, 0],
-                        [0.56683, 0.25891, 0.05109, 0.00186, 0]];
+    [5.33444, 1.08944, 0.14257, 0.00368, 0],
+    [4.18586, 0.88405, 0.11318, 0.00107, 0],
+    [1.95873, 0.44459, 0.07189, 0.0014, 0],
+    [0.56683, 0.25891, 0.05109, 0.00186, 0]];
     // Cena omrežnine za presezno moc [uporabniska_skupina][casovni_blok]
     const price_ex_m_cb = [[3.61324, 0.8824, 0.19137, 0.01316, 0],
-                        [5.33444, 1.08944, 0.14257, 0.00368, 0],
-                        [4.18586, 0.88405, 0.11318, 0.00107, 0],
-                        [1.95873, 0.44459, 0.07189, 0.0014, 0],
-                        [0.56683, 0.25891, 0.05109, 0.00186, 0]];
+    [5.33444, 1.08944, 0.14257, 0.00368, 0],
+    [4.18586, 0.88405, 0.11318, 0.00107, 0],
+    [1.95873, 0.44459, 0.07189, 0.0014, 0],
+    [0.56683, 0.25891, 0.05109, 0.00186, 0]];
     // Faktor utežitve presežne moči za leto 2024
     Fex = 0.9;
     // Cena omrežnine za energijo [napetostni_nivo][nacin_prikljucitve][odjemna_skupina] (za MT/VT/ET)
@@ -293,11 +281,11 @@ function calculateExpenses() {
     // const price_e_vt = [[[0.04308, 0.04308, 0.01144, 0.02290, 0.01689], [0.01218, 0.00765]],
     //                     [[0.01252, 0.00789], [0.00097, 0.00074]],
     //                     [[0.00153, 0.00145, 0.00158]]];
-    
+
     // const price_e_mt = [[[0.03311, 0.03311, 0.00882, 0.01759, 0.01298], [0.00936, 0.00592]],
     //                     [[0.00964, 0.00608], [0.00075, 0.00057]],
     //                     [[0.00118, 0.00111, 0.00123]]];
-    
+
     // const price_e_et = [[[0.03973, 0.03973, 0, 0, 0], [0, 0]],
     //                     [[0, 0], [0, 0]],
     //                     [[0, 0, 0]]];
@@ -309,24 +297,24 @@ function calculateExpenses() {
 
     // CENIK ZA 2023
     const price_e_vt = [[[0.04182, 0.04182, 0.01111, 0.02223, 0.01639], [0.01183, 0.00743]],
-                        [[0.01217, 0.00767], [0.00095, 0.00072]],
-                        [[0.00149, 0.00141, 0.00154]]];
-    
+    [[0.01217, 0.00767], [0.00095, 0.00072]],
+    [[0.00149, 0.00141, 0.00154]]];
+
     const price_e_mt = [[[0.03215, 0.03215, 0.00856, 0.01708, 0.01261], [0.00909, 0.00575]],
-                        [[0.00937, 0.00591], [0.00073, 0.00055]],
-                        [[0.00115, 0.00108, 0.00120]]];
-    
+    [[0.00937, 0.00591], [0.00073, 0.00055]],
+    [[0.00115, 0.00108, 0.00120]]];
+
     const price_e_et = [[[0.03858, 0.03858, 0, 0, 0], [0, 0]],
-                        [[0, 0], [0, 0]],
-                        [[0, 0, 0]]];
+    [[0, 0], [0, 0]],
+    [[0, 0, 0]]];
 
     const price_m_obr = [[[0.77417, 0.77417, 2.30549, 4.61098, 5.54684], [3.50514, 4.20754]],
-                         [[2.40595, 3.13080], [2.97166, 3.00735]],
-                         [[1.07303, 0.99541, 0.93077]]];
+    [[2.40595, 3.13080], [2.97166, 3.00735]],
+    [[1.07303, 0.99541, 0.93077]]];
 
 
 
-    
+
 
 
 
@@ -342,7 +330,7 @@ function calculateExpenses() {
     let cost_e_et = null;
     let cost_m_obr = null;
 
-    
+
     // Skrij opozorilo - napačno izbrana kombinacija: vrsta odjema, način priključitve, nap. nivo
     let odjSk = document.getElementById('warn-odjSk');
     odjSk.style.display = 'none';
@@ -353,7 +341,7 @@ function calculateExpenses() {
     const odjSk_selectVal = document.querySelector('input[name="odjSk"]:checked').value;
     const nacPrik_selectVal = document.querySelector('input[name="nacPrik"]:checked').value;
     const napNivo_selectVal = document.querySelector('input[name="napNivo"]:checked').value;
-    
+
 
     // Izračunaj stroške omrežnine (glede na izbrano odjemno skupino) - stroški starega načina omrežnine
     // Stroški omrežnine v primeru izbire napetostnega nivoja NN
@@ -457,7 +445,7 @@ function calculateExpenses() {
     // Skrij opozorilo - napačna izbira odjemne skupine glede na izbran način obračuna
     let odjSk_et = document.getElementById('warn-odjSk-et');
     odjSk_et.style.display = 'none';
-    
+
     // Prikaži opozorilo - napačna izbira odjemne skupine glede na izbran način obračuna
     if (nacObr_selectVal == '1-tarif' && (odjSk_selectVal != "gospodinjstvo" && odjSk_selectVal != "bmm")) {
         // Prikaži opozorilo
@@ -470,7 +458,7 @@ function calculateExpenses() {
     }
 
 
-    
+
     // Izračunaj stroške omrežnine (glede na izbrano uporabniško skupino) - stroški novega načina omrežnine
     switch (usk_selectVal) {
         case 'usk-0':
@@ -487,7 +475,7 @@ function calculateExpenses() {
                 cost_ex_m_cb.push(Fex * m_ex_cb[i] * price_ex_m_cb[1][i]);
             }
             break;
-        
+
         case 'usk-2':
             for (let i = 0; i < 5; i++) {
                 cost_e_cb.push(e_cb[i] * price_e_cb[2][i]);
@@ -514,14 +502,14 @@ function calculateExpenses() {
             cost_m_cb = [0, 0, 0, 0, 0];
             cost_ex_m_cb = [0, 0, 0, 0, 0];
     }
-    
-    
+
+
     // Izračunaj stroške energenta
     let cost_en_mt = price_en_mt * e_mt;
     let cost_en_vt = price_en_vt * e_vt;
     let cost_en_et = price_en_et * e_et;
 
-    
+
     // AGREGACIJA STROŠKOV
     // Agregiraj stroške po ČB za omrežnino za energijo in dogovorjeno moč
     cost_e_agg_new = cost_e_cb.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
@@ -538,7 +526,7 @@ function calculateExpenses() {
     // Agregiraj vse stroške
     cost_agg = cost_agg_new + cost_agg_old + cost_en_agg;
 
-    
+
     // PRIKAZ STROŠKOV
     showOutputs(cost_e_cb, cost_m_cb, cost_ex_m_cb, cost_agg_new,
         cost_e_mt, cost_e_vt, cost_e_et, cost_m_obr, cost_agg_old,
