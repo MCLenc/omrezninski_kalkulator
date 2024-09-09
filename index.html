@@ -16,11 +16,13 @@
 
 
     <!-- TODO:
-        - Preuredi trenutni način obračuna (leva stran), nov način obračuna (desna stran)
+        - Omejitev, da je dog. moč vsakega naslednjega bloka večja ali enaka dog. moči prejšnjega bloka. - OK
+        - Popravi sliko "graf_porabe.png", dogovorjene moči na tej sliki ne sledijo načelu m_cb_i+1 >= m_cb_i
+        - Preveri cenike
         - JS skripto razbij na več manjših
         - CSS skripto razbij na več manjših
         - HTML razbij na več manjših
-        - index.html daj ven iz /src v /root
+        - Nastavi: Status aplikacije: PRODUKCIJA status test - OK
     -->
 
 
@@ -30,8 +32,13 @@
             <div class="col-md-2 my-auto">
                 <img class="img-head" src="media/ec_logo_w.png">
             </div>
-            <div class="col-md-10 p-3 my-auto">
+            <div class="col-md-8 p-3 my-auto">
                 <h1 class="head-title">KALKULATOR STROŠKOV ELEKTRIČNE ENERGIJE</h1>
+            </div>
+            <!-- Status aplikacije -->
+            <div class="col-md-1 my-auto">
+                <div>Status aplikacije</div>
+                <b class="red-text">TEST</b>
             </div>
         </div>
 
@@ -536,6 +543,7 @@
                                 <button type="button" class="btn-st btn btn-primary my-1" id="clear_display">Ponastavi</button>
                                 <button type="button" class="btn-st btn btn-primary my-1 mx-3" id="calculate_button">Izračunaj stroške</button>
                             </div>
+                            <!-- Opozorila za uporabnike -->
                             <!-- Opozorilo - napačno izbrana kombinacija: vrsta odjema, način priključitve, nap. nivo -->
                             <div class="d-flex flex-column col-lg-12">
                                 <div class="col-md-8 my-1 alert alert-danger warn-odjSk" role="alert" id="warn-odjSk">Neveljavna kombinacija vrste odjema, načina priključitve in napetostnega nivoja. Prosimo vnesite veljavno kombinacijo. Izračun za trenutni način obračuna bo nastavljen na 0 EUR.</div>
@@ -543,6 +551,15 @@
                             <!-- Opozorilo - napačna izbira odjemne skupine glede na izbran način obračuna -->
                             <div class="d-flex flex-column col-lg-12">
                                 <div class="col-md-8 my-1 alert alert-danger warn-odjSk-et" role="alert" id="warn-odjSk-et">Izbrali ste Enotarifni (ET) način obračuna in napačno vrsto odjema. Pri enotarifnem načinu obračuna je vrsta odjema lahko le: <i>Gospodinjstvo</i> ali <i>Brez merjenja moči</i>. Spremenite vrsto odjema ali način obračuna.</div>
+                            </div>
+                            <!-- Opozorilo - dogovorjene moči niso enake ali večje za vsak naslednji časovni blok -->
+                            <div class="d-flex flex-column col-lg-12">
+                                <div class="col-md-8 my-1 alert alert-danger warn-m_cb" role="alert" id="warn-m_cb">
+                                    Vnesli ste nepravilno nastavljene dogovorjene moči:
+                                    <i><div class="black-text" id="err-m-cb"></div></i>
+                                    <br>
+                                    Prosimo popravite dogovorjene moči. Izračun za nov način obračuna bo nastavljen na 0 EUR.
+                                </div>
                             </div>
                         </div>
                         <div class="row">

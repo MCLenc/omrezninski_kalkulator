@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // Pridobi vrednosti za izbor načina obračuna
+    // Pridobi vrednosti za izbor sezone
     const radioButtons_sezona = document.querySelectorAll('input[name="sezona"]');
     let cb_1_elements = document.getElementsByClassName('cb-1');
     let cb_2_elements = document.getElementsByClassName('cb-2');
@@ -158,7 +158,7 @@ function getUserInputValues() {
     let m_cb = [];
     let m_ex_cb = [];
 
-    // Pridobi vnos uporabnika - porabljena energija, dogovorjene močiin presežki po ČB
+    // Pridobi vnos uporabnika - porabljena energija, dogovorjene moči in presežki po ČB
     for (let i = 1; i < 6; i++) {
         // Pridobi vnose energij
         let e_cbx = parseFloat(document.getElementById(`e-cb${i}`).value);
@@ -267,7 +267,7 @@ function calculateExpenses() {
     const[e_cb, m_cb, m_ex_cb, e_mt, e_vt, e_et, m_obr, price_en_mt, price_en_vt, price_en_et] = getUserInputValues();
 
         
-    // NASTAVI STATILČNE CENIKE STROŠKOV
+    // NASTAVI STATIČNE CENIKE STROŠKOV
     // Cena omrežnine za energijo [uporabniska_skupina][casovni_blok]
     const price_e_cb = [[0.01925, 0.01844, 0.01837, 0.01838, 0.01847],
                         [0.01454, 0.01389, 0.01369, 0.0133, 0.01329],
@@ -349,6 +349,8 @@ function calculateExpenses() {
 
     // Pridobi vnos uporabnika za izbor uporabniške skupine
     const usk_selectVal = document.querySelector('input[name="usk"]:checked').value;
+    // Pridobi vnos uporabnika za izbor sezone
+    const sezona_selectVal = document.querySelector('input[name="sezona"]:checked').value;
     // Pridobi vnos uporabnika za izbor parametrov odjemne skupine
     const odjSk_selectVal = document.querySelector('input[name="odjSk"]:checked').value;
     const nacPrik_selectVal = document.querySelector('input[name="nacPrik"]:checked').value;
@@ -445,12 +447,13 @@ function calculateExpenses() {
     }
     // V primeru, da uporabnik izbere neveljavno kombinacijo odjemne skupine nastavi stroške na 0 EUR in prikaži obvestilo
     else {
+        // Prikaži opozorilo - napačno izbrana kombinacija: vrsta odjema, način priključitve, nap. nivo
+        odjSk.style.display = 'block';
+        // Nastavi izračun stroškov na 0
         cost_e_mt = 0;
         cost_e_vt = 0;
         cost_e_et = 0;
         cost_m_obr = 0;
-        // Prikaži opozorilo - napačno izbrana kombinacija: vrsta odjema, način priključitve, nap. nivo
-        odjSk.style.display = 'block';
     }
 
 
@@ -462,6 +465,7 @@ function calculateExpenses() {
     if (nacObr_selectVal == '1-tarif' && (odjSk_selectVal != "gospodinjstvo" && odjSk_selectVal != "bmm")) {
         // Prikaži opozorilo
         odjSk_et.style.display = 'block';
+        // Nastavi izračun stroškov na 0
         cost_e_et = 0;
     }
     else {
@@ -514,6 +518,56 @@ function calculateExpenses() {
             cost_m_cb = [0, 0, 0, 0, 0];
             cost_ex_m_cb = [0, 0, 0, 0, 0];
     }
+
+
+    // Skrij opozorilo - nepravilno nastavljene dog. moči
+    let warn_m_cb = document.getElementById('warn-m_cb');
+    warn_m_cb.style.display = 'none';
+
+    // Prikaži opozorilo - nepravilno nastavljene dog. moči
+    let err_m_cb_i = [];  // Polje za beleženje posameznih nepravilno nastavljenih dog. moči
+    let cb_start = null;  // prvi ČB, ki se upošteva v posamezni sezoni
+    let cb_end = null;    // zadnji ČB, ki se upošteva v posamezni sezoni
+    
+    // V višji sezoni preveri dog. moči za ČB1 - ČB4, v nižji sezoni preveri dog. moči za ČB2 - ČB5
+    if (sezona_selectVal == 'visja') {
+        cb_start = 1;
+        cb_end = 4;
+    }
+    else {
+        cb_start = 2;
+        cb_end = 5;
+    }
+
+    // Za vsako dog. moč preveri ali je dog. moč naslednjega bloka manjša. Če je to pomeni nepravilen vnost dog. moči s strani uporabnika
+    for (let i = cb_start-1; i < cb_end-1; i++) {
+        // Preveri nevalidnost velikosti zaporedni dog. moči
+        if (m_cb[i] > m_cb[i+1]) {
+            // Sestavi opozorilo za posamezne dog. moči: m_cb_i > m_cb_i+1
+            err_m_cb_i.push('Dog. moč ČB' + (i+1) + ' ne sme biti večja od Dog. moči ČB' + (i+2));
+        }
+    }
+    
+    // Če obstaja vsaj ena nepravilno nastavljena dog. moč prikaži opozorilo
+    if (err_m_cb_i.length > 0) {
+        // Sestavi enotno opozorilo in ga prikaži uporabniku katere dog. moči mora uporabnik popraviti
+        document.getElementById('err-m-cb').innerHTML = err_m_cb_i.join("<br>");
+
+        // Prikaži opozorilo
+        warn_m_cb.style.display = 'block';
+
+        // Nastavi izračun stroškov na 0
+        cost_e_cb = [0, 0, 0, 0, 0];
+        cost_m_cb = [0, 0, 0, 0, 0];
+        cost_ex_m_cb = [0, 0, 0, 0, 0];
+    }
+    else {
+        // Počisti enotno opozorilo
+        document.getElementById('err-m-cb').innerHTML = "";
+        // Skrij opozorilo
+        warn_m_cb.style.display = 'none';
+    }
+    
     
     
     // Izračunaj stroške energenta

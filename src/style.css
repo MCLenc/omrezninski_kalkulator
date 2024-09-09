@@ -306,6 +306,14 @@ hr {
     display: none;
 }
 
+.warn-m_cb {
+    display: none;
+}
+
 .red-text {
     color: #ff5d5d;
+}
+
+.black-text {
+    color: black;
 }

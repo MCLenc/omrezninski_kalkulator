@@ -4,10 +4,10 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 Kalkulator stroškov električne energije je aplikacija, ki uporabnikom omogoča primerjalni izračun stroškov omrežnine po:
-- Metodologoiji obračuna omrežnine skladno s [Aktom o metodologiji za določitev regulativnega okvira in metodologiji za obračunavanje omrežnine za elektrooperaterje](http://www.pisrs.si/Pis.web/pregledPredpisa?id=AKT_1050) (veljaven do 30.6.2023).
-- Metodologoiji obračuna omrežnine skladno s [Aktom o metodologiji za obračunavanje omrežnine za elektrooperaterje](http://pisrs.si/Pis.web/pregledPredpisa?id=AKT_1266) (veljaven od 1.7.2023 dalje).
+- Metodologoiji obračuna omrežnine skladno s [Aktom o metodologiji za določitev regulativnega okvira in metodologiji za obračunavanje omrežnine za elektrooperaterje](http://www.pisrs.si/Pis.web/pregledPredpisa?id=AKT_1050) (veljaven do 30.9.2024).
+- Metodologoiji obračuna omrežnine skladno s [Aktom o metodologiji za obračunavanje omrežnine za elektrooperaterje](http://pisrs.si/Pis.web/pregledPredpisa?id=AKT_1266) (veljaven od 1.10.2024 dalje).
 
-Izračun je na voljo takšen kot je in ne upošteva vseh posebnosti zakonodaje (npr. upoštevanje vezalnih shem, proizvedene energije, vključitev v sistemske storitve, itd.), omogoča le osnovne izračune za odjemalce električne energije.
+Izračun je na voljo takšen kot je in ne upošteva vseh posebnosti zakonodaje (npr. upoštevanje vezalnih shem, proizvedene energije, vključitev v sistemske storitve, nov uporabnik omrežja itd.), omogoča le osnovne izračune za odjemalce električne energije.
 
 ## Funkcionalnosti:
 - Informativni izračun stroškov omrežnine po metodologiji obračuna omrežnine (eno ali dvo tarifni sistem).
@@ -15,6 +15,9 @@ Izračun je na voljo takšen kot je in ne upošteva vseh posebnosti zakonodaje (
 - `Opcijsko:` Informativni izračun stroškov omrežnine presežnih moči. 
 - `Opcijsko:` Informativni izračun stroškov porabljene energije/energenta (eno ali dvo tarifni sistem).
 - Enostavne razlage nove terminologije vezane na obračun omrežnine po časovnih blokih z uporabo info gumbov.
+- Validacija vnosov neveljavnih kombinacij:
+    - parametrov odjemnih skupin
+    - vrednosti dogovorjenih moči
 - Upoštevan cenik stroškov omrežnine za leto 2024, ki je na voljo na spletni strani: [link](https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-3431/akt-o-dolocitvi-tarifnih-postavk-za-omreznine-elektrooperaterjev).
 
 ## Omejitve:
