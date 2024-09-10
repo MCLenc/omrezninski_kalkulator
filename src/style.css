@@ -51,7 +51,7 @@ hr {
     width: 120px;
 }
 
-.img-graf-porabe {
+.img-dog-moc {
     display: block;
     width: 90%;
     margin-top: 10px;
@@ -224,6 +224,34 @@ hr {
     margin-right: 1px;
     display: none;
 }
+
+.cb-1-strong-color {
+    color: #C00000;
+}
+
+.cb-2-strong-color {
+    color: #9F5211;
+}
+
+.cb-3-strong-color {
+    color: #FFC000;
+}
+
+.cb-4-strong-color {
+    color: #70AC2E;
+}
+
+.cb-5-strong-color {
+    color: #00B050;
+}
+
+.text-size-big {
+    font-size: 26px;
+}
+
+
+
+
 
 .mt {
     background-color: #94d08d;

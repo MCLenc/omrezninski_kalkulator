@@ -17,13 +17,24 @@
 
     <!-- TODO:
         - Omejitev, da je dog. moč vsakega naslednjega bloka večja ali enaka dog. moči prejšnjega bloka. - OK
-        - Popravi sliko "graf_porabe.png", dogovorjene moči na tej sliki ne sledijo načelu m_cb_i+1 >= m_cb_i
+        - Popravi sliko "graf_porabe.png", dogovorjene moči na tej sliki ne sledijo načelu m_cb_i+1 >= m_cb_i - OK
+        - Dodatne zahteve ELES:
+            1. Info "Uporabniške skupine" naj se dopolni USK-0, da so to GOS, MPO, EV polnilnice, itd. poglej po zakonodaju - OK
+            2. Info "Dog. moč" Pravilo m_cb_i+1 >= m_cb_i naj se dodatno slikovno obrazloži - OK
+            3. Info "Časovni blok" vizualno prikazati nove ČB-je in stare VT/MT, da odjemalec vidi primerjavo... - OK
+        - Info "Časovni blok" spremeni sliko, da bo bolj podobna tisti na tej spletni strani: https://www.uro.si/prenova-omrežnine/novi-časovni-bloki - OK
+
         - Preveri cenike
-        - Dopolni Izjavo o omejitvi odgovornosti
+        - Zamenjaj ozadje za statični CSS (ne sliko)
+        - Dopolni Izjavo o omejitvi odgovornosti - OK
         - JS skripto razbij na več manjših
         - CSS skripto razbij na več manjših
         - HTML razbij na več manjših
         - Nastavi: Status aplikacije: PRODUKCIJA status test - OK
+
+        - Mogoče, da ločimo za do 43 kW GOS na obračunsko in priključno. + tabela obr. moč -- priklj. moč
+        - Naredi se vsota VT/MT/ET in naredi se vsota energije ČB in če ti dve številki nista enaki se naredi opozorilo uporabniku, da ne bodo stroški ekvivalentno primerjani in da naj popravi.
+
     -->
 
 
@@ -57,7 +68,7 @@
                                 <span>V primeru nejasnosti so pri izpolnjevanju podatkov na voljo <b>info</b> gumbi, ki podajajo več informacij<div class="badge rounded-pill inf">i</div></span>
                             </div>
                         </p>
-                        <p>Spodaj so podani trije kalkulatorji. Na levi strani je na voljo kalkulator za informativni izračun mesečnih stroškov električne energije po trenutnem načinu obračunavanja omrežnine (dvotarifni obračun (VT/MT) ali eno tarifni obračun (ET)), ki bo v veljevi do 30.6.2024. Na desni strani je na voljo kalkulator za informativni izračun mesečnih stroškov električne energije po novem načinu obračunavanja omrežnine energije (časovni bloki), ki bo v veljevi od 1.7.2024 dalje. Podatke lahko vnesete le v en kalkulator ali v oba.</p>
+                        <p>Spodaj so podani trije kalkulatorji. Na levi strani je na voljo kalkulator za informativni izračun mesečnih stroškov električne energije po trenutnem načinu obračunavanja omrežnine (dvotarifni obračun (VT/MT) ali eno tarifni obračun (ET)), ki bo v veljevi do 30.9.2024. Na desni strani je na voljo kalkulator za informativni izračun mesečnih stroškov električne energije po novem načinu obračunavanja omrežnine energije (časovni bloki), ki bo v veljevi od 1.10.2024 dalje. Podatke lahko vnesete le v en kalkulator ali v oba.</p>
                         <p>Opcijsko lahko s tretjim kalkulatorjem omogočite izračun mesečnih stroškov energenta. Ta se računa posebej in sicer po tarifah (MT/VT ali ET).</p>
                         <p>Ko vpišete podatke v razdelku IZRAČUN STROŠKOV kliknite gumb <i><b>Izračunaj stroške</b></i>. Če želite ponastaviti vse vrednosti kliknite na gumb <i><b>Ponastavi</b></i></p>
                         <p>Vse informacije navedene na tej strani so informativne narave. Za več podrobnosti si preberite Izjavo o omejitvi odgovornosti na dnu strani.</p>
@@ -899,10 +910,16 @@
                 </div>
                 <div class="modal-body"> 
                     <p>Uporabniška skupina je skupina, v katero se glede na mesto priključitve napetostni nivo in način priključitve razvrščajo uporabniki sistema za potrebe obračuna električne energije.</p>
-                    <p class="red-text">Gospodinjstva so uvrščena v uporabniško skupino 0.</p>
+                    <!--<p class="red-text">Gospodinjstva, mali poslovni odjem in polnilnice za e-vozila so uvrščena v uporabniško skupino 0.</p>-->
                     <p>Poznamo sledeče uporabniške skupine:</p>
                     <ul>
-                        <li><b><i>Uporabniška skupina 0</i></b> so merilna mesta priključena na nizkonapetostni (NN) izvod napetosti 400/230 V.</li>
+                        <li><b><i>Uporabniška skupina 0</i></b> so merilna mesta priključena na nizkonapetostni (NN) izvod napetosti 400/230 V. Sem so med drugim uvrščena:
+                        <ul>
+                            <li class="red-text">gospodinjstva</li>
+                            <li class="red-text">mali poslovni odjem</li>
+                            <li class="red-text">polnilnice za e-vozila</li>
+                        </ul>
+                        </li>
                         <li><b><i>Uporabniška skupina 1</i></b> so merilna mesta priključena na nizkonapetostne (NN) zbiralke v SN/NN transformatorsko postajo.</li>
                         <li><b><i>Uporabniška skupina 2</i></b> so merilna mesta priključena na srednjenapetostni (SN) izvod napetosti 35, 20 in 10 kV.</li>
                         <li><b><i>Uporabniška skupina 3</i></b> so merilna mesta priključena na srednjenapetostne (SN) zbiralke v VN/SN razdelilno-transformatorsko postajo.</li>
@@ -925,7 +942,7 @@
                     <p>Izračunane presežne moči se obračunavajo skladno s <a href="https://www.uradni-list.si/glasilo-uradni-list-rs/vsebina/2023-01-3431/akt-o-dolocitvi-tarifnih-postavk-za-omreznine-elektrooperaterjev" target="_blank">cenikom</a>, ki ga je objavila Agencija za energijo, pri čemer je za stroške v letu 2024 upoštevan faktor utežitve presežne moči 0,9 (Akt priloga 2, 5. poglavje)</p>
                     <img class="img-presezne-moci" src="media/presezne_moci.png">
                     <p class="text-center"><i>Primer izračuna presežne moči za ČB1.</i></p>
-                    <p><b class="red-text">POMEMBNO</b>: Dve leti po začetku uporabe novega tarifnega sistema (šteto od 1.7.2023 dalje) se stroški presežnih moči <b>ne obračunavajo</b> uporabnikom sistema, ki imajo <b>priključno moč manjšo ali enako 43 kW</b> (oz. imajo varovalko manjšo od 3x63 A) <b>IN</b> v teh dveh letih niso spremenili dogovorjenih moči, ki jih je določil elektrooperater.</p>
+                    <p><b class="red-text">POMEMBNO</b>: Dve leti po začetku uporabe novega tarifnega sistema (šteto od 1.10.2024 dalje) se stroški presežnih moči <b>ne obračunavajo</b> uporabnikom sistema, ki imajo <b>priključno moč manjšo ali enako 43 kW</b> (oz. imajo varovalko manjšo od 3x63 A) <b>IN</b> v teh dveh letih niso spremenili dogovorjenih moči, ki jih je določil elektrooperater.</p>
                     <p>Elektrooperater bo v omenjenih dveh letih uporabnike sistema seznanjal o presežnih močeh in z njimi poveznih stroških.</p>
                     <!-- <p>Če že obstoječ uporabnik pridobi novo soglasje za priključitev, se za obračun omrežnine za dogovorjeno moč upošteva dosežena moč posameznega časovnega bloka, dokler niso na voljo ustrezni podatki o pretekli 15-minutni porabi.</p> -->
                 </div>
@@ -963,8 +980,9 @@
                 <div class="modal-body">
                     <p>Časovni blok (ČB) je obdobje znotraj dneva, ki traja določeno število ur v katerih velja določen cenik za omrežnino. Skozi leto obstaja 5 časovnih blokov (ČB1 - ČB5), vendar so v posameznem dnevu aktivni le 4 časovni bloki.</p>
                     <p>Časovni bloki so različno razporejeni znotraj dneva, če gre za delovni dan ali dela prost dan in če je dan v višji ali nižji sezoni.</p>
+                    <p>Spodnja slika kaže primerjavo časovnih obdobij med trenutnim tarifnim sistemom (t.j. dvotarifni VT/MT ali enotarifni ET sistem) in novim tarifnim sistemom (t.j. časovni bloki)</p>
                     <img class="img-casovni-bloki-sezone" src="media/casovni_bloki.png">
-                    <p class="text-center"><i>Časovnih bloki po urah za obe sezoni za delovne in dela proste dni.</i></p>
+                    <p class="text-center"><i>ET ali VT/MT tarife (levo) in časovnih bloki po urah za obe sezoni (desno) za delovne in dela proste dni.</i></p>
                 </div>
             </div>
         </div>
@@ -979,12 +997,18 @@
                 </div>
                 <div class="modal-body">
                     <p>Dogovorjena obračunska moč je moč, ki jo določite vi (uporabnik sistema) ali elektrooperater (slednji v skladu s 12. in 14. členom <i>Akta o metodologiji za obračunavanje omrežnine za elektrooperaterje</i>).</p>
+                    <p>Dogovorjeno moč si lahko predstavljate kot neke vrste "virtualno varovalko", ki ima vrednost moči med priključno močjo vaše dejanske fizične varovalke in neko minimalno močjo (določeno skladno z Aktom). Ker posamezna dogovorjena moč velja za posamezni časovni blok bo torej ta "virtualna varovalka" predstavljala maksimalno moč, ki jo lahko dosežete z vašo porabo v posameznem časovnem bloku, brez, da bi plačali presežno moč (presežke).</p>
                     <p class="red-text">Dogovorjene moči za posamezne časovne bloke, ki jih je določil elektrooperater najdete na vašem računu za električno energijo za mesec september 2023.</p>
-                    <p>Dogovorjena moč ne sme biti večja od priključne moči iz vašega soglasja za priključitev, pri čemer priključna moč pomeni tudi moč, določena z dejanskim omejevalcem toka (npr. vašo varovalko, odklopnikom, itd.) na v priključni omarici.</p>
-                    <p>Dogovorjeno moč si lahko predstavljate kot neke vrste "virtualno varovalko", ki ima vrednost moči med priključno močjo vaše dejanske fizične varovalke in neko minimalno močjo (določeno v Aktu). Ker posamezna dogovorjena moč velja za posamezni časovni blok bo torej ta "virtualna varovalka" predstavljala maksimalno moč, ki jo lahko dosežete z vašo porabo v posameznem časovnem bloku, brez, da bi plačali presežno moč (presežke).</p>
+                    <p>Dogovorjena moč ne sme biti večja od priključne moči iz vašega soglasja za priključitev, pri čemer priključna moč pomeni tudi moč, določena z dejanskim omejevalcem toka (npr. vašo varovalko, odklopnikom, itd.) v priključni omarici.</p>
                     <p>Dogovorjena moč za vsak naslednji časovni blok mora biti večja ali enaka dogovorjeni moči prejšnjega časovnega bloka (npr. dogovorjena moč za ČB2 mora biti večja ali enaka dogovorjeni moči za ČB1 in dogovorjena moč za ČB3 mora biti večja ali enaka dogovorjeni moči za ČB2, itd.)</p>
-                    <img class="img-graf-porabe" src="media/graf_porabe.png">
-                    <p class="text-center"><i>Primer grafa izmerjene porabe in dogovorjenih moči v različnih časovnih blokih za <b>delovni dan</b> v <b>višji sezoni</b>.</i></p>
+                    <p class="text-size-big"><b><span class="cb-1-strong-color">dog. moč ČB1</span> &le; <span class="cb-2-strong-color">dog. moč ČB2</span> &le; <span class="cb-3-strong-color">dog. moč ČB3</span> &le; <span class="cb-4-strong-color">dog. moč ČB4</span> &le; <span class="cb-5-strong-color">dog. moč ČB5</span></b></p>
+                    <p>Na spodnji sliki so prikazani primeri veljavno in neveljavno nastavljenih dogovorjenih moči skladno z zgoraj zapisanim pravilom o velikosti dogovorjenih moči. V primeru nepravilne nastavitve dogovorjenih moči vas bo aplikacija obvestila o napaki v tem primeru sledite navodilom in popravite napačno nastavljene dogovorjene moči.</p>
+                    <img class="img-dog-moc" src="media/primeri_nastavitev_dog_moci.png">
+                    <p class="text-center"><i>Primeri veljavno in neveljavno nastavljenih dogovorjenih moči.</i></p>                    
+                    <!-- Na koncu teksta je Trigger modal - presežna moč -->
+                    <p>V praksi se dogovorjene moči primerjajo z vašo dejansko porabo moči, ki jo izmeri pametni števec električne energije. Primerjava se opravi vsakih 15 minut, vaša dejanska poraba pa se v različnih časovnih blokih primerja z različnimi dogovorjenimi močmi. V primeru, da ste imeli v nekem 15 minutnem intrvalu znotraj določenega časovnega bloka (npr. ČB2) vašo dejansko porabo večjo, kot je dogovorjena moč ČB2 ste s svojo porabo "presegli" dogovorjeno moč ČB2. Več o presežnih močeh, si lahko preberete v razdelku <span class="badge rounded-pill inf" data-bs-toggle="modal" data-bs-target="#modal-m-ex">Kaj je presežna moč</span></p>
+                    <img class="img-dog-moc" src="media/graf_porabe.png">
+                    <p class="text-center"><i>Primer izmerjene porabe, dogovorjenih in presežnih moči v različnih časovnih blokih za <b>delovni dan</b> v <b>višji sezoni</b>.</i></p>
                     <p>Če ste že priključeni na elektroenergetski sistem in pridobite novo soglasje za priključitev (npr. zaprosite za povečavo varovalk, itd.), se za obračun omrežnine za dogovorjeno moč upošteva dosežena (izmerjena) moč posameznega časovnega bloka, dokler niso na voljo ustrezni podatki o pretekli 15-minutni porabi iz vašega pametnega števca.</p>
                 </div>
             </div>
